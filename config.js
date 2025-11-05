@@ -4,7 +4,7 @@ const CONFIG = {
     GEMINI_API_KEY: 'AIzaSyDm8TxOTHRWL_THAY_API_KEY_CUA_BAN_VAO_DAY',
     
     // Model sử dụng
-    MODEL_NAME: 'gemini-pro',
+    MODEL_NAME: 'gemini-flash-lastest',
     
     // Cấu hình AI
     TEMPERATURE: 0.3,
@@ -46,3 +46,4 @@ Trả lời: "Theo Thông tư 38/2015/TT-BTC, thủ tục hải quan đối vớ
 2. Xuất trình giấy phép nhập khẩu từ Bộ NN&PTNT
 3. Kiểm tra chất lượng tại cửa khẩu
 Thời gian xử lý: 2-3 ngày làm việc."`;
+
