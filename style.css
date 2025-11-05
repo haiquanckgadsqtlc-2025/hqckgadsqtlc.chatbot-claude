@@ -600,7 +600,54 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
+/* ===== FORMAT NÂNG CAO CHO TIN NHẮN ===== */
 
+.message-content strong {
+    color: #1e3c72;
+    font-weight: bold;
+}
+
+.message-content p {
+    margin: 0;
+    line-height: 1.8;
+}
+
+.message-content br {
+    display: block;
+    content: "";
+    margin: 8px 0;
+}
+
+/* Tiêu đề mục */
+.message-content strong:first-child {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    color: #2a5298;
+    font-size: 15px;
+}
+
+/* Icon */
+.message-content i.fa-phone,
+.message-content i.fa-envelope,
+.message-content i.fa-clock,
+.message-content i.fa-check-circle,
+.message-content i.fa-times-circle,
+.message-content i.fa-exclamation-triangle {
+    margin-right: 5px;
+}
+
+/* Danh sách dấu chấm */
+.message-content p {
+    text-align: justify;
+}
+
+/* Highlight văn bản pháp lý */
+.bot-message .message-content strong {
+    background: linear-gradient(120deg, #e0f2fe 0%, #dbeafe 100%);
+    padding: 2px 6px;
+    border-radius: 3px;
+}
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .main-title {
@@ -655,5 +702,6 @@ body {
         font-size: 22px;
     }
 }
+
 
 
