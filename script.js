@@ -400,36 +400,59 @@ Liên hệ: Hải quan Lào Cai
 📞 Hotline: 024.xxxx.xxxx
 📧 Email: haiquan@laocai.gov.vn`;
     }
-
-    addMessage(text, sender) {
-        const chatMessages = document.getElementById('chatMessages');
-        if (!chatMessages) return;
+addMessage(text, sender) {
+    const chatMessages = document.getElementById('chatMessages');
+    if (!chatMessages) return;
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message ' + sender + '-message fade-in';
+    
+    const avatar = document.createElement('div');
+    avatar.className = 'message-avatar';
+    avatar.innerHTML = sender === 'bot' 
+        ? '<i class="fas fa-robot"></i>' 
+        : '<i class="fas fa-user"></i>';
+    
+    const content = document.createElement('div');
+    content.className = 'message-content';
+    
+    // Format text nâng cao
+    let formattedText = text
+        // Xuống dòng
+        .replace(/\n/g, '<br>')
         
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'message ' + sender + '-message fade-in';
+        // Tiêu đề mục (số + dấu chấm + tiêu đề)
+        .replace(/(\d+)\.\s*([^\n]+)/g, '<br><strong>$1. $2</strong>')
         
-        const avatar = document.createElement('div');
-        avatar.className = 'message-avatar';
-        avatar.innerHTML = sender === 'bot' 
-            ? '<i class="fas fa-robot"></i>' 
-            : '<i class="fas fa-user"></i>';
+        // Văn bản pháp lý
+        .replace(/(Nghị định|Thông tư|Luật|Quyết định|Công văn)\s+(\d+\/\d+\/[A-Z\-]+)/g, '<strong>$1 $2</strong>')
         
-        const content = document.createElement('div');
-        content.className = 'message-content';
+        // Điều khoản
+        .replace(/(Điều|Khoản|Mục)\s+(\d+)/g, '<strong>$1 $2</strong>')
         
-        // Format text: chuyển \n thành <br>, giữ nguyên số thứ tự
-        let formattedText = text
-            .replace(/\n/g, '<br>')
-            .replace(/(\d+)\.\s/g, '<br>$1. '); // Xuống dòng trước số
+        // Thời gian
+        .replace(/(\d+)\s*(giờ|ngày|tháng|năm)/g, '<strong>$1 $2</strong>')
         
-        content.innerHTML = '<p>' + formattedText + '</p>';
+        // Icon
+        .replace(/📞/g, '<i class="fas fa-phone"></i>')
+        .replace(/📧/g, '<i class="fas fa-envelope"></i>')
+        .replace(/⏰/g, '<i class="fas fa-clock"></i>')
+        .replace(/✅/g, '<i class="fas fa-check-circle" style="color: green;"></i>')
+        .replace(/❌/g, '<i class="fas fa-times-circle" style="color: red;"></i>')
+        .replace(/⚠️/g, '<i class="fas fa-exclamation-triangle" style="color: orange;"></i>')
         
-        messageDiv.appendChild(avatar);
-        messageDiv.appendChild(content);
-        chatMessages.appendChild(messageDiv);
-        
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
+        // Dấu gạch đầu dòng
+        .replace(/^- (.+)/gm, '<br>• $1')
+        .replace(/\n- (.+)/g, '<br>• $1');
+    
+    content.innerHTML = '<p>' + formattedText + '</p>';
+    
+    messageDiv.appendChild(avatar);
+    messageDiv.appendChild(content);
+    chatMessages.appendChild(messageDiv);
+    
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
 
     showTypingIndicator() {
         const chatMessages = document.getElementById('chatMessages');
@@ -485,3 +508,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.chatbot = new ChatbotAI();
 });
+
