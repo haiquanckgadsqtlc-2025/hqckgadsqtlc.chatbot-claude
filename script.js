@@ -33,11 +33,13 @@ class ChatbotAI {
         try {
             this.showLoadingMessage('Đang tải tài liệu hải quan...');
 
-            const files = [
+           const files = [
                 'data/chi_muc.txt',
                 'data/tai_lieu_1.txt',
                 'data/tai_lieu_2.txt',
-                'data/tai_lieu_3.txt'
+                'data/tai_lieu_3.txt',
+                'data/tai_lieu_tau_bien_hang_khong.txt',
+                 'data/tai_lieu_format_mau.txt'  // THÊM DÒNG NÀY
             ];
 
             let allContent = '';
@@ -508,4 +510,5 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.chatbot = new ChatbotAI();
 });
+
 
