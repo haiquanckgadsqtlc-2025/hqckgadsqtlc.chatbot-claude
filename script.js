@@ -1,19 +1,32 @@
-// ===== GOOGLE GEMINI CHATBOT AI =====
+// ===== GOOGLE GEMINI CHATBOT AI - VERSION 2.0 =====
 
 class ChatbotAI {
     constructor() {
         this.apiKey = CONFIG.GEMINI_API_KEY;
-        this.apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/' + CONFIG.MODEL_NAME + ':generateContent?key=' + this.apiKey;
-        this.conversationHistory = [];
+        this.modelName = CONFIG.MODEL_NAME;
+        this.apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/' + this.modelName + ':generateContent?key=' + this.apiKey;
         this.documentContent = '';
         this.isLoading = false;
+        this.requestCount = 0;
         
         this.init();
     }
 
     async init() {
+        this.log('🚀 Khởi động Chatbot AI với model: ' + this.modelName);
         await this.loadDocuments();
         this.setupEventListeners();
+        this.log('✅ Chatbot sẵn sàng!');
+    }
+
+    log(message, data) {
+        if (CONFIG.DEBUG) {
+            if (data) {
+                console.log(message, data);
+            } else {
+                console.log(message);
+            }
+        }
     }
 
     async loadDocuments() {
@@ -33,34 +46,40 @@ class ChatbotAI {
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
                 try {
+                    this.log('📄 Đang tải: ' + file);
                     const response = await fetch(file);
+                    
                     if (response.ok) {
                         const text = await response.text();
-                        allContent += text + '\n\n';
+                        allContent += '\n\n===== FILE: ' + file + ' =====\n' + text;
                         loadedFiles++;
-                        console.log('✅ Đã tải: ' + file);
+                        this.log('✅ Đã tải: ' + file + ' (' + text.length + ' ký tự)');
                     } else {
-                        console.warn('⚠️ Không tải được: ' + file);
+                        this.log('⚠️ Không tải được: ' + file + ' (HTTP ' + response.status + ')');
                     }
                 } catch (error) {
-                    console.warn('⚠️ Lỗi khi tải ' + file + ':', error);
+                    this.log('⚠️ Lỗi khi tải ' + file, error);
                 }
             }
 
+            // Nếu không load được file nào, dùng tài liệu mẫu
             if (loadedFiles === 0) {
-                console.warn('⚠️ Không load được file nào, dùng tài liệu mẫu');
+                this.log('⚠️ Không load được file nào, dùng tài liệu mẫu');
                 allContent = this.getSampleDocument();
+                this.addMessage('⚠️ Cảnh báo: Đang sử dụng tài liệu mẫu do không tải được file gốc.', 'bot');
             }
 
             this.documentContent = allContent;
             this.removeLoadingMessage();
             
-            console.log('✅ Đã tải ' + loadedFiles + '/4 tài liệu, tổng ' + this.documentContent.length + ' ký tự');
+            this.log('✅ Tổng kết: Đã tải ' + loadedFiles + '/' + files.length + ' tài liệu');
+            this.log('📊 Tổng dung lượng: ' + this.documentContent.length + ' ký tự');
             
         } catch (error) {
-            console.error('❌ Lỗi load tài liệu:', error);
+            this.log('❌ Lỗi nghiêm trọng khi load tài liệu', error);
             this.documentContent = this.getSampleDocument();
             this.removeLoadingMessage();
+            this.addMessage('❌ Không thể tải tài liệu. Đang sử dụng dữ liệu mẫu.', 'bot');
         }
     }
 
@@ -105,37 +124,76 @@ class ChatbotAI {
 
         if (message === '' || this.isLoading) return;
 
+        this.log('💬 Người dùng hỏi: ' + message);
         this.addMessage(message, 'user');
         userInput.value = '';
 
         this.isLoading = true;
+        this.requestCount++;
         const loadingId = this.showTypingIndicator();
 
         try {
+            this.log('🔄 Bắt đầu xử lý request #' + this.requestCount);
+            
+            // Kiểm tra tài liệu
+            if (!this.documentContent || this.documentContent.length < 100) {
+                throw new Error('Tài liệu chưa được tải hoặc quá ngắn');
+            }
+            
             const response = await this.callGeminiAPI(message);
+            
             this.removeTypingIndicator(loadingId);
+            this.log('✅ Đã nhận câu trả lời');
             this.addMessage(response, 'bot');
+            
         } catch (error) {
-            console.error('❌ Lỗi:', error);
+            this.log('❌ Lỗi khi xử lý:', error);
             this.removeTypingIndicator(loadingId);
-            const fallbackResponse = this.getFallbackResponse(message);
-            this.addMessage(fallbackResponse, 'bot');
+            
+            // Hiển thị lỗi chi tiết cho người dùng
+            let errorMessage = '❌ Xin lỗi, đã có lỗi xảy ra.\n\n';
+            
+            if (error.message.includes('API key')) {
+                errorMessage += '🔑 Lỗi API Key: Vui lòng kiểm tra lại API key trong file config.js\n\n';
+                errorMessage += 'Hướng dẫn:\n';
+                errorMessage += '1. Truy cập: https://aistudio.google.com\n';
+                errorMessage += '2. Click "Get API key"\n';
+                errorMessage += '3. Copy API key mới\n';
+                errorMessage += '4. Dán vào file config.js';
+            } else if (error.message.includes('Tài liệu')) {
+                errorMessage += '📄 Lỗi tài liệu: ' + error.message + '\n\n';
+                errorMessage += 'Vui lòng kiểm tra thư mục data/ trên GitHub.';
+            } else if (error.message.includes('429')) {
+                errorMessage += '⏳ Đã vượt giới hạn request. Vui lòng đợi 1 phút rồi thử lại.';
+            } else {
+                errorMessage += 'Chi tiết lỗi: ' + error.message + '\n\n';
+                errorMessage += 'Vui lòng liên hệ:\n';
+                errorMessage += '📞 Hotline: ' + CONFIG.WEBSITE_INFO.hotline + '\n';
+                errorMessage += '📧 Email: ' + CONFIG.WEBSITE_INFO.email;
+            }
+            
+            this.addMessage(errorMessage, 'bot');
+            
         } finally {
             this.isLoading = false;
         }
     }
 
     async callGeminiAPI(userQuestion) {
-        const maxRetries = 3;
+        const maxRetries = 2;
         let lastError;
 
-        for (let i = 0; i < maxRetries; i++) {
+        for (let attempt = 0; attempt < maxRetries; attempt++) {
             try {
-                const promptText = SYSTEM_PROMPT + '\n\n===== TÀI LIỆU THAM KHẢO =====\n' + 
-                    this.documentContent.substring(0, 30000) + 
+                this.log('🚀 API Call - Lần thử ' + (attempt + 1) + '/' + maxRetries);
+                
+                // Tạo prompt
+                const promptText = SYSTEM_PROMPT + 
+                    '\n\n===== TÀI LIỆU THAM KHẢO =====\n' + 
+                    this.documentContent.substring(0, 40000) + 
                     '\n\n===== CÂU HỎI CỦA NGƯỜI DÙNG =====\n' + 
                     userQuestion + 
-                    '\n\n===== TRẢ LỜI =====';
+                    '\n\n===== HÃY TRẢ LỜI =====';
 
                 const requestBody = {
                     contents: [{
@@ -145,7 +203,9 @@ class ChatbotAI {
                     }],
                     generationConfig: {
                         temperature: CONFIG.TEMPERATURE,
-                        maxOutputTokens: CONFIG.MAX_TOKENS
+                        maxOutputTokens: CONFIG.MAX_TOKENS,
+                        topP: CONFIG.TOP_P || 0.8,
+                        topK: CONFIG.TOP_K || 40
                     },
                     safetySettings: [
                         {
@@ -167,7 +227,9 @@ class ChatbotAI {
                     ]
                 };
 
-                console.log('🚀 Đang gọi Gemini API... (lần thử: ' + (i + 1) + ')');
+                this.log('📤 Gửi request đến Gemini API...');
+                this.log('🔗 URL: ' + this.apiUrl);
+                this.log('📏 Độ dài prompt: ' + promptText.length + ' ký tự');
 
                 const response = await fetch(this.apiUrl, {
                     method: 'POST',
@@ -177,47 +239,67 @@ class ChatbotAI {
                     body: JSON.stringify(requestBody)
                 });
 
+                this.log('📥 Nhận response - Status: ' + response.status);
+
+                // Đọc response
                 const data = await response.json();
+                this.log('📦 Response data:', data);
 
+                // Xử lý lỗi HTTP
                 if (!response.ok) {
-                    console.error('❌ API Error:', response.status, data);
-                    
-                    if (response.status === 429) {
-                        console.log('⏳ Rate limit, đợi ' + (2000 * (i + 1)) + ' ms...');
-                        await this.sleep(2000 * (i + 1));
-                        continue;
+                    if (response.status === 400) {
+                        if (data.error && data.error.message) {
+                            if (data.error.message.includes('API key')) {
+                                throw new Error('API key không hợp lệ hoặc đã hết hạn. Vui lòng tạo API key mới tại https://aistudio.google.com');
+                            }
+                            throw new Error('Lỗi API (400): ' + data.error.message);
+                        }
+                    } else if (response.status === 429) {
+                        throw new Error('Vượt giới hạn request (429). Vui lòng đợi 1 phút.');
+                    } else if (response.status === 403) {
+                        throw new Error('API key không có quyền truy cập (403). Kiểm tra lại API key.');
+                    } else if (response.status === 404) {
+                        throw new Error('Model không tồn tại (404). Kiểm tra lại MODEL_NAME trong config.js');
                     }
                     
-                    if (response.status === 400 && data.error && data.error.message && data.error.message.includes('API key')) {
-                        throw new Error('API key không hợp lệ. Vui lòng kiểm tra lại config.js');
-                    }
-                    
-                    throw new Error('API Error: ' + response.status);
+                    throw new Error('HTTP Error ' + response.status + ': ' + JSON.stringify(data));
                 }
 
-                if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-                    const answer = data.candidates[0].content.parts[0].text;
-                    console.log('✅ Nhận được câu trả lời');
-                    return answer;
-                } else if (data.candidates && data.candidates[0] && data.candidates[0].finishReason) {
-                    console.warn('⚠️ Content bị block:', data.candidates[0].finishReason);
-                    return this.getFallbackResponse(userQuestion);
-                } else {
-                    throw new Error('Không nhận được phản hồi từ AI');
+                // Lấy câu trả lời
+                if (data.candidates && data.candidates.length > 0) {
+                    const candidate = data.candidates[0];
+                    
+                    // Kiểm tra bị block
+                    if (candidate.finishReason === 'SAFETY') {
+                        this.log('⚠️ Nội dung bị chặn bởi safety filter');
+                        return 'Xin lỗi, câu hỏi của bạn chứa nội dung không phù hợp theo chính sách an toàn. Vui lòng đặt câu hỏi khác.';
+                    }
+                    
+                    if (candidate.content && candidate.content.parts && candidate.content.parts.length > 0) {
+                        const answer = candidate.content.parts[0].text;
+                        this.log('✅ Câu trả lời: ' + answer.substring(0, 100) + '...');
+                        return answer;
+                    }
                 }
+
+                // Không có câu trả lời hợp lệ
+                this.log('⚠️ Response không chứa câu trả lời hợp lệ');
+                throw new Error('API không trả về câu trả lời. Response: ' + JSON.stringify(data));
 
             } catch (error) {
-                console.error('❌ Lỗi lần thử ' + (i + 1) + ':', error);
+                this.log('❌ Lỗi lần thử ' + (attempt + 1), error);
                 lastError = error;
                 
-                if (i < maxRetries - 1) {
-                    console.log('🔄 Thử lại...');
-                    await this.sleep(1000 * (i + 1));
+                // Retry với delay
+                if (attempt < maxRetries - 1) {
+                    const delay = 2000 * (attempt + 1);
+                    this.log('⏳ Đợi ' + delay + 'ms trước khi thử lại...');
+                    await this.sleep(delay);
                 }
             }
         }
 
-        console.error('❌ Đã thử ' + maxRetries + ' lần nhưng vẫn lỗi');
+        // Hết retry, throw error
         throw lastError;
     }
 
@@ -225,83 +307,98 @@ class ChatbotAI {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    getFallbackResponse(question) {
-        const lowerQuestion = question.toLowerCase();
-        
-        if (lowerQuestion.includes('qua canh') || lowerQuestion.includes('quá cảnh')) {
-            return 'Thủ tục giám sát hàng quá cảnh:\n\n1. Khai báo hải quan tại cửa khẩu nhập\n2. Niêm phong hàng hóa bởi cán bộ hải quan\n3. Vận chuyển theo tuyến đường quy định\n4. Giám sát GPS (nếu yêu cầu)\n5. Làm thủ tục xuất tại cửa khẩu biên giới\n\nHồ sơ cần:\n• Tờ khai hàng hóa quá cảnh\n• Vận đơn quốc tế\n• Hợp đồng vận chuyển\n• Danh mục hàng hóa chi tiết\n\nThời gian: Tối đa 15 ngày quá cảnh\n\nLiên hệ: 024.xxxx.xxxx để được hỗ trợ chi tiết.';
-        }
-        
-        if (lowerQuestion.includes('phan bon') || lowerQuestion.includes('phân bón')) {
-            return 'Thủ tục hải quan phân bón:\n\nTheo Thông tư 38/2015/TT-BTC:\n\n1. Nộp tờ khai hải quan điện tử\n2. Xuất trình giấy phép nhập khẩu (Bộ NN&PTNT)\n3. Kiểm tra chất lượng tại cửa khẩu\n4. Lấy mẫu kiểm nghiệm (lô hàng đầu)\n\nThời gian: 2-3 ngày làm việc\n\nHotline: 024.xxxx.xxxx\nEmail: haiquan@laocai.gov.vn';
-        }
-
-        if (lowerQuestion.includes('phot pho') || lowerQuestion.includes('hoa chat') || lowerQuestion.includes('hóa chất')) {
-            return 'Thủ tục hải quan hóa chất/phot pho:\n\n⚠️ Hàng nguy hiểm - kiểm soát đặc biệt\n\nGiấy tờ bắt buộc:\n1. Giấy phép nhập khẩu hóa chất (Bộ Công Thương)\n2. Phiếu an toàn hóa chất (MSDS)\n3. Giấy phép vận chuyển hóa chất nguy hiểm\n4. Bảo hiểm trách nhiệm dân sự\n\nKiểm tra: 100% lô hàng\nThời gian: 5-7 ngày làm việc\n\nLiên hệ ngay: 024.xxxx.xxxx';
-        }
-
-        if (lowerQuestion.includes('duong sat') || lowerQuestion.includes('đường sắt') || lowerQuestion.includes('ga')) {
-            return 'Giám sát hàng hóa đường sắt quốc tế:\n\nQuy trình:\n1. Thông báo trước 24 giờ khi tàu đến\n2. Kiểm tra niêm phong tại biên giới\n3. Giám sát dỡ/xếp hàng tại ga\n4. Kiểm tra vận đơn quốc tế\n5. Xác nhận xuất cảnh\n\nThời gian kiểm tra: 2-4 giờ/chuyến\n\nLiên hệ: 024.xxxx.xxxx';
-        }
-
-        return 'Xin lỗi, hiện hệ thống AI tạm thời gặp sự cố kỹ thuật.\n\nBạn có thể:\n1. Thử hỏi lại với câu ngắn gọn hơn\n2. Liên hệ trực tiếp:\n   📞 Hotline: 024.xxxx.xxxx\n   📧 Email: haiquan@laocai.gov.vn\n   ⏰ Giờ làm việc: T2-T6, 7:30-17:00\n\nMột số câu hỏi mẫu:\n• "Thủ tục nhập khẩu phân bón"\n• "Giấy phép cần thiết"\n• "Quy trình quá cảnh hàng hóa"\n• "Thời gian xử lý hồ sơ"';
-    }
-
     getSampleDocument() {
-        const doc = 'TÀI LIỆU HẢI QUAN LÀO CAI\n\n' +
-            'CHƯƠNG 1: THỦ TỤC GIÁM SÁT HÀNG QUÁ CẢNH\n\n' +
-            'Điều 1: Định nghĩa\n' +
-            'Hàng hóa quá cảnh là hàng hóa được vận chuyển qua lãnh thổ Việt Nam từ cửa khẩu nhập đến cửa khẩu xuất mà không thực hiện hoạt động thương mại tại Việt Nam.\n\n' +
-            'Điều 2: Thủ tục hải quan hàng quá cảnh\n' +
-            '1. Khai báo hải quan tại cửa khẩu nhập\n' +
-            '2. Niêm phong hàng hóa bởi cán bộ hải quan\n' +
-            '3. Vận chuyển theo tuyến đường quy định\n' +
-            '4. Giám sát bằng GPS (nếu yêu cầu)\n' +
-            '5. Làm thủ tục xuất tại cửa khẩu biên giới\n\n' +
-            'Điều 3: Hồ sơ cần thiết\n' +
-            '- Tờ khai hàng hóa quá cảnh\n' +
-            '- Vận đơn quốc tế\n' +
-            '- Hợp đồng vận chuyển\n' +
-            '- Danh mục hàng hóa chi tiết\n\n' +
-            'Điều 4: Thời gian xử lý\n' +
-            '- Kiểm tra hồ sơ: 30 phút\n' +
-            '- Niêm phong: 1-2 giờ\n' +
-            '- Thời gian quá cảnh tối đa: 15 ngày\n\n' +
-            'CHƯƠNG 2: THỦ TỤC HẢI QUAN PHÂN BÓN\n\n' +
-            'Điều 5: Quy định chung\n' +
-            'Phân bón thuộc danh mục hàng hóa cần giấy phép nhập khẩu theo Thông tư 38/2015/TT-BTC.\n\n' +
-            'Điều 6: Hồ sơ\n' +
-            '1. Tờ khai hải quan điện tử\n' +
-            '2. Giấy phép nhập khẩu từ Bộ NN&PTNT\n' +
-            '3. Hợp đồng mua bán\n' +
-            '4. Hóa đơn thương mại\n' +
-            '5. Giấy chứng nhận chất lượng\n\n' +
-            'Điều 7: Thời gian\n' +
-            '- Hồ sơ đầy đủ: 2-3 ngày làm việc\n' +
-            '- Cần kiểm nghiệm: 5-7 ngày làm việc\n\n' +
-            'CHƯƠNG 3: THỦ TỤC HẢI QUAN HÓA CHẤT\n\n' +
-            'Điều 8: Phân loại\n' +
-            'Phot pho thuộc danh mục hóa chất nguy hiểm cần kiểm soát đặc biệt.\n\n' +
-            'Điều 9: Giấy tờ bắt buộc\n' +
-            '1. Giấy phép nhập khẩu hóa chất\n' +
-            '2. Phiếu an toàn hóa chất (MSDS)\n' +
-            '3. Giấy phép vận chuyển\n' +
-            '4. Bảo hiểm trách nhiệm dân sự\n\n' +
-            'Điều 10: Kiểm tra\n' +
-            '- 100% lô hàng phải kiểm tra thực tế\n' +
-            '- Thời gian: 5-7 ngày làm việc\n\n' +
-            'CHƯƠNG 4: GIÁM SÁT ĐƯỜNG SẮT\n\n' +
-            'Điều 11: Quy trình\n' +
-            '1. Thông báo trước 24 giờ\n' +
-            '2. Kiểm tra niêm phong tại biên giới\n' +
-            '3. Giám sát dỡ/xếp hàng\n' +
-            '4. Kiểm tra vận đơn quốc tế\n' +
-            '5. Xác nhận xuất cảnh\n\n' +
-            'Điều 12: Thời gian\n' +
-            '- Kiểm tra: 2-4 giờ/chuyến\n' +
-            '- Xử lý hồ sơ: 1 ngày làm việc';
-        
-        return doc;
+        return `===== TÀI LIỆU HẢI QUAN MẪU =====
+
+CHƯƠNG 1: GIÁM SÁT TÀU BIỂN
+
+Điều 1: Thủ tục giám sát tàu biển
+Khi tàu biển cập cảng Việt Nam, cần thực hiện:
+
+1. Thông báo trước cho hải quan cảng biển (24 giờ trước khi đến)
+2. Nộp hồ sơ:
+   - Manifest (bản kê hàng hóa)
+   - Danh sách thuyền viên
+   - Giấy tờ tàu (đăng ký, đăng kiểm)
+   - Tờ khai hàng hóa
+   
+3. Kiểm tra hải quan:
+   - Kiểm tra niêm phong container
+   - Đối chiếu manifest với hàng thực tế
+   - Kiểm tra hàng nguy hiểm (nếu có)
+   - Quét X-ray container (nếu cần)
+   
+4. Giám sát dỡ hàng:
+   - Hải quan giám sát toàn bộ quá trình
+   - Kiểm tra số lượng, trọng lượng
+   - Niêm phong lại container sau kiểm tra
+   
+5. Thời gian xử lý: 4-8 giờ/tàu
+
+Điều 2: Hàng nguy hiểm trên tàu biển
+- Phải khai báo chi tiết loại hóa chất
+- Xuất trình MSDS (phiếu an toàn)
+- Kiểm tra 100% container chứa hàng nguy hiểm
+- Giám sát suốt quá trình vận chuyển từ cảng đến kho
+
+CHƯƠNG 2: TRÁCH NHIỆM DOANH NGHIỆP CẢNG HÀNG KHÔNG
+
+Điều 3: Nghĩa vụ của DN kinh doanh cảng hàng không
+
+Theo Luật Hàng không 2020 và Nghị định 92/2021/NĐ-CP:
+
+1. VỀ CƠ SỞ VẬT CHẤT:
+   - Đảm bảo khu vực giám sát hải quan đạt chuẩn
+   - Lắp đặt camera quan sát 24/7
+   - Có kho hàng nguy hiểm riêng biệt
+   - Hệ thống soi chiếu X-ray, máy dò kim loại
+
+2. VỀ GIÁM SÁT HÀNG HÓA:
+   - Phối hợp với hải quan kiểm tra hàng xuất nhập khẩu
+   - Cung cấp thông tin hàng hóa theo yêu cầu
+   - Báo cáo ngay hàng hóa bất thường
+   - Lưu trữ hồ sơ tối thiểu 5 năm
+
+3. VỀ AN NINH:
+   - Kiểm tra an ninh 100% hành khách, hành lý
+   - Kiểm soát người ra vào khu vực hạn chế
+   - Đào tạo nhân viên về an ninh hàng không
+   - Có kế hoạch ứng phó sự cố
+
+4. VỀ BÁO CÁO:
+   - Báo cáo định kỳ cho Cục Hàng không
+   - Thông báo sự cố trong vòng 2 giờ
+   - Cung cấp số liệu thống kê khi có yêu cầu
+
+5. TRÁCH NHIỆM VỚI HẢI QUAN:
+   - Bố trí văn phòng làm việc cho hải quan
+   - Hỗ trợ kiểm tra hàng hóa 24/7
+   - Cung cấp thông tin chuyến bay, hàng hóa
+   - Giám sát hàng quá cảnh
+
+6. XỬ PHẠT KHI VI PHẠM:
+   - Cảnh cáo đến thu hồi giấy phép
+   - Phạt tiền từ 50-200 triệu đồng
+   - Đình chỉ hoạt động (vi phạm nghiêm trọng)
+
+CHƯƠNG 3: QUY TRÌNH CHUNG
+
+Điều 4: Nguyên tắc giám sát
+- Hải quan có quyền kiểm tra bất kỳ lúc nào
+- Doanh nghiệp phải tạo điều kiện thuận lợi
+- Mọi thông tin phải cung cấp trung thực
+- Thời gian xử lý: Theo quy định từng loại hình
+
+Điều 5: Hồ sơ chung
+1. Tờ khai hải quan (điện tử hoặc giấy)
+2. Hợp đồng, hóa đơn
+3. Vận đơn (B/L, AWB...)
+4. Giấy phép (nếu hàng cần phép)
+5. Chứng từ nguồn gốc
+
+Liên hệ: Hải quan Lào Cai
+📞 Hotline: 024.xxxx.xxxx
+📧 Email: haiquan@laocai.gov.vn`;
     }
 
     addMessage(text, sender) {
@@ -320,7 +417,11 @@ class ChatbotAI {
         const content = document.createElement('div');
         content.className = 'message-content';
         
-        let formattedText = text.replace(/\n/g, '<br>');
+        // Format text: chuyển \n thành <br>, giữ nguyên số thứ tự
+        let formattedText = text
+            .replace(/\n/g, '<br>')
+            .replace(/(\d+)\.\s/g, '<br>$1. '); // Xuống dòng trước số
+        
         content.innerHTML = '<p>' + formattedText + '</p>';
         
         messageDiv.appendChild(avatar);
@@ -376,7 +477,11 @@ class ChatbotAI {
     }
 }
 
+// Khởi động chatbot
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Khởi động Chatbot AI...');
+    console.log('🚀 Bắt đầu khởi động Chatbot AI...');
+    console.log('📋 Model: ' + CONFIG.MODEL_NAME);
+    console.log('🔑 API Key: ' + CONFIG.GEMINI_API_KEY.substring(0, 20) + '...');
+    
     window.chatbot = new ChatbotAI();
 });
