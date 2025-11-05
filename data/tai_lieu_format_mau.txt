@@ -1,0 +1,250 @@
+===== TÀI LIỆU HẢI QUAN - ĐỊNH DẠNG CHUẨN =====
+
+Văn bản: Nghị định 167/2025/NĐ-CP ngày 20/12/2024 về thủ tục hải quan, kiểm tra, giám sát hải quan
+
+CHƯƠNG I: THỦ TỤC HẢI QUAN TÀU BIỂN
+
+Điều 35: Thủ tục hải quan đối với tàu biển
+
+Theo quy định tại Nghị định 167/2025/NĐ-CP, thủ tục giám sát đối với tàu biển bao gồm các bước sau:
+
+Bước 1: Thông báo kế hoạch chuyển tải
+
+Trước khi tàu biển đến khu vực neo đậu hoặc chuyển tải, người khai hải quan phải thông báo kế hoạch chuyển tải cho cơ quan hải quan quản lý khu vực đó để thực hiện giám sát.
+
+Thông báo phải gửi trước ít nhất 24 giờ trước khi tàu đến cảng.
+
+Bước 2: Tiếp nhận và kiểm tra hồ sơ hải quan
+
+Cổng thông tin một cửa quốc gia (NSW) sẽ tiếp nhận và kiểm tra thông tin khai hải quan, phản hồi số tiếp nhận hồ sơ trong thời hạn 01 giờ.
+
+Nếu hồ sơ không đầy đủ hoặc không hợp lệ, Cổng thông tin sẽ từ chối chấp nhận hồ sơ và nêu rõ lý do.
+
+Hồ sơ cần nộp bao gồm:
+- Bản khai chung của tàu biển (General Declaration)
+- Bản khai hàng hóa (Cargo Manifest)
+- Danh sách thuyền viên (Crew List)
+- Danh sách hành khách (Passenger List) nếu có
+- Bản khai hàng nguy hiểm (Dangerous Goods Declaration) nếu có
+
+Bước 3: Xử lý kết quả kiểm tra hồ sơ
+
+Cơ quan hải quan xác nhận hoàn thành thủ tục hải quan thông qua Cổng thông tin một cửa quốc gia (NSW).
+
+Đối với tàu biển có hàng hóa cấm nhập khẩu hoặc không đáp ứng quy định, cơ quan hải quan sẽ thông báo cho người khai hải quan và các bên liên quan để xử lý.
+
+Thời gian xử lý: Trong vòng 02 giờ làm việc kể từ khi nhận đủ hồ sơ hợp lệ.
+
+Bước 4: Giám sát hải quan
+
+Cơ quan hải quan sẽ thực hiện giám sát tàu biển trong quá trình:
+- Neo đậu tại cảng hoặc khu vực neo đậu
+- Bốc dỡ hàng hóa lên xuống tàu
+- Di chuyển trong khu vực hoạt động hải quan
+
+Nếu phát hiện dấu hiệu buôn lậu hoặc vận chuyển trái phép, cơ quan hải quan có quyền:
+- Kiểm tra thực tế hàng hóa, tàu biển
+- Tạm giữ hàng hóa, phương tiện
+- Xử lý theo quy định pháp luật
+
+Bước 5: Thủ tục đối với tàu biển quá cảnh
+
+Tàu biển quá cảnh (transit) phải thực hiện thủ tục hải quan tại:
+- Cơ quan hải quan cửa khẩu nhập đầu tiên khi vào lãnh hải Việt Nam
+- Cơ quan hải quan cửa khẩu xuất cuối cùng khi rời lãnh hải Việt Nam
+
+Hàng hóa trên tàu quá cảnh không được dỡ xuống trừ trường hợp:
+- Chuyển tải sang tàu khác (có giấy phép)
+- Sửa chữa, thay thế bao bì hư hỏng
+- Khẩn cấp vì lý do an toàn
+
+Bước 6: Thủ tục đối với tàu biển chuyển cảng
+
+Đối với tàu biển chuyển cảng (di chuyển từ cảng này sang cảng khác trong Việt Nam):
+
+Cơ quan hải quan nơi tàu rời đi sẽ:
+- Tiếp nhận thông tin về kế hoạch chuyển cảng
+- Lập phiếu chuyển hồ sơ gửi đến cơ quan hải quan nơi tàu dự kiến đến
+- Niêm phong khoang hàng (nếu hàng không được dỡ)
+
+Cơ quan hải quan nơi tàu đến sẽ:
+- Tiếp nhận phiếu chuyển hồ sơ
+- Kiểm tra niêm phong
+- Thực hiện giám sát theo quy định
+
+Thời gian thông báo: Ít nhất 06 giờ trước khi tàu rời cảng.
+
+Điều 36: Hồ sơ hải quan tàu biển
+
+Theo Khoản 1 Điều 36, hồ sơ hải quan đối với tàu biển bao gồm:
+
+1. Bản khai chung (General Declaration):
+- Thông tin tàu: Tên, số đăng ký, cảng đăng ký, quốc tịch
+- Thông tin chuyến đi: Cảng đi, cảng đến, ngày giờ đến/rời
+- Tổng số hành khách, thuyền viên
+
+2. Bản khai hàng hóa (Cargo Declaration):
+- Danh sách chi tiết hàng hóa trên tàu
+- Số lượng, trọng lượng, loại hàng
+- Bill of Lading (vận đơn)
+
+3. Danh sách thuyền viên (Crew List):
+- Họ tên, quốc tịch, số hộ chiếu
+- Chức vụ, ngày sinh
+
+4. Danh sách hành khách (Passenger List):
+- Áp dụng với tàu chở khách
+
+5. Danh sách hàng dự trữ tàu (Ship's Stores):
+- Nhiên liệu, thực phẩm, đồ dùng của thuyền viên
+
+Điều 37: Giám sát hải quan tại cảng biển
+
+Theo quy định tại Điều 37, cơ quan hải quan thực hiện giám sát:
+
+1. Giám sát tàu biển nhập cảnh:
+- Kiểm tra giấy tờ tàu, hàng hóa
+- Phân luồng kiểm tra: Xanh (không kiểm tra), Vàng (kiểm tra hồ sơ), Đỏ (kiểm tra thực tế)
+- Giám sát dỡ hàng nhập khẩu
+- Thời gian: 04-08 giờ/tàu
+
+2. Giám sát tàu biển xuất cảnh:
+- Kiểm tra hàng xuất khẩu trước khi xếp lên tàu
+- Giám sát xếp hàng lên tàu
+- Niêm phong container xuất khẩu
+- Cấp Giấy phép rời cảng (Port Clearance)
+
+3. Giám sát hàng chuyển tải:
+- Hàng phải lưu trong khu vực giám sát hải quan
+- Niêm phong container, không được mở
+- Thời gian lưu tối đa: 30 ngày (có thể gia hạn thêm 30 ngày)
+
+4. Xử lý vi phạm:
+- Phát hiện hàng lậu, hàng cấm → Tạm giữ, lập biên bản
+- Xử phạt theo Nghị định 128/2020/NĐ-CP
+- Mức phạt: Từ 20 triệu đến 200 triệu đồng tùy mức độ vi phạm
+
+---
+
+CHƯƠNG II: TRÁCH NHIỆM DOANH NGHIỆP CẢNG HÀNG KHÔNG
+
+Điều 34: Quy định về doanh nghiệp kinh doanh cảng hàng không
+
+Theo Luật Hàng không dân dụng Việt Nam 2006 (sửa đổi 2014, 2020) và Nghị định 92/2021/NĐ-CP, doanh nghiệp kinh doanh cảng hàng không có các trách nhiệm sau:
+
+1. Về điều kiện kinh doanh
+
+Doanh nghiệp phải đáp ứng:
+- Vốn điều lệ tối thiểu 500 tỷ đồng (cảng quốc tế) hoặc 100 tỷ đồng (cảng nội địa)
+- Có Giấy phép kinh doanh khai thác cảng hàng không do Bộ GTVT cấp
+- Đội ngũ quản lý có chứng chỉ chuyên môn
+- Cơ sở vật chất đạt chuẩn ICAO (Tổ chức Hàng không Dân dụng Quốc tế)
+
+2. Về an ninh hàng không
+
+Theo Thông tư 15/2014/TT-BGTVT, doanh nghiệp phải:
+
+a) Lắp đặt hệ thống an ninh:
+- Camera giám sát 100% khu vực sân bay, lưu trữ 30 ngày
+- Máy soi chiếu X-ray hành lý (tối thiểu 2 máy/nhà ga)
+- Cổng dò kim loại tại mọi lối vào khu vực hạn chế
+- Máy dò chất nổ tại khu vực check-in
+- Hệ thống đèn chiếu sáng chu vi sân bay
+
+b) Kiểm tra an ninh hành khách:
+- Soi chiếu 100% hành lý xách tay qua máy X-ray
+- Kiểm tra 100% hành khách qua cổng dò kim loại
+- Lấy mẫu kiểm tra chất nổ ngẫu nhiên 5-10% hành khách
+- Phỏng vấn an ninh đối với hành khách nghi ngờ
+
+c) Kiểm tra hàng hóa vận chuyển:
+- Soi X-ray 100% hàng hóa vận chuyển trên máy bay chở khách
+- Kiểm tra thực tế 30% hàng hóa bằng mắt thường
+- Kiểm tra 100% hàng nguy hiểm kèm theo MSDS (phiếu an toàn hóa chất)
+
+3. Trách nhiệm với cơ quan hải quan
+
+Theo Luật Hải quan 2014, doanh nghiệp cảng hàng không phải:
+
+a) Bố trí cơ sở vật chất:
+- Văn phòng làm việc cho hải quan: Diện tích tối thiểu 50m², có điều hòa, máy tính, internet
+- Khu vực kiểm tra hàng hóa: Tối thiểu 200m², có mái che, đèn chiếu sáng
+- Kho hàng xuất nhập khẩu trong khu vực giám sát hải quan
+- Kho hàng nguy hiểm riêng biệt
+
+b) Cung cấp thông tin:
+- Lịch bay hàng ngày, cập nhật thay đổi trong vòng 01 giờ
+- Manifest (bản kê hàng hóa) của mỗi chuyến bay
+- Thông tin vị trí hàng hóa trong kho
+- Hỗ trợ tra cứu khi hải quan yêu cầu
+
+c) Phối hợp kiểm tra:
+- Tạo điều kiện cho hải quan làm việc 24/7
+- Cung cấp nhân lực, thiết bị khi cần (xe nâng, pallet...)
+- Dẫn cán bộ hải quan đến vị trí kiểm tra hàng
+- Lập biên bản chứng kiến kiểm tra
+
+d) Giám sát hàng quá cảnh:
+- Hàng quá cảnh quốc tế phải lưu trong khu vực giám sát hải quan
+- Niêm phong, không được mở container
+- Thời gian lưu tối đa: 30 ngày
+- Báo cáo hải quan về tình trạng hàng
+
+e) Lưu trữ hồ sơ:
+- Lưu trữ tất cả hồ sơ hàng hóa, hình ảnh camera tối thiểu 5 năm
+- Cung cấp hồ sơ cho hải quan trong vòng 24 giờ khi có yêu cầu
+- Định dạng: Điện tử hoặc giấy
+
+4. Chế độ báo cáo
+
+Doanh nghiệp phải:
+- Báo cáo hàng ngày cho Cục Hàng không VN về số chuyến bay, hành khách, hàng hóa
+- Báo cáo tháng, quý, năm về tình hình hoạt động
+- Báo cáo sự cố trong vòng 02 giờ kể từ khi phát hiện
+
+5. Xử phạt vi phạm
+
+Theo Nghị định 162/2018/NĐ-CP:
+
+a) Vi phạm nhẹ (báo cáo chậm, sai sót nhỏ):
+- Cảnh cáo hoặc phạt tiền 10-20 triệu đồng
+
+b) Vi phạm trung bình (không cung cấp thông tin, thiết bị hỏng):
+- Phạt tiền 20-50 triệu đồng
+- Đình chỉ hoạt động một phần 1-3 tháng
+
+c) Vi phạm nghiêm trọng (sự cố an ninh, không kiểm tra hành khách):
+- Phạt tiền 50-100 triệu đồng
+- Đình chỉ hoạt động 3-6 tháng
+
+d) Vi phạm rất nghiêm trọng (tai nạn do lỗi sân bay, vi phạm lặp lại):
+- Phạt tiền 100-200 triệu đồng
+- Thu hồi Giấy phép kinh doanh
+
+---
+
+CHƯƠNG III: QUY ĐỊNH KHÁC
+
+Điều 45: Thời hạn giải quyết thủ tục
+
+Theo quy định chung:
+- Tiếp nhận hồ sơ điện tử: 01 giờ
+- Kiểm tra hồ sơ: 02 giờ làm việc
+- Thông quan (luồng xanh): Ngay sau khi tiếp nhận
+- Thông quan (luồng vàng): 04 giờ làm việc
+- Thông quan (luồng đỏ): 01-02 ngày làm việc
+
+Điều 46: Liên hệ và tra cứu
+
+Mọi thắc mắc về thủ tục hải quan, vui lòng liên hệ:
+
+Hải quan cửa khẩu ga đường sắt quốc tế Lào Cai
+Địa chỉ: Ga đường sắt quốc tế, TP. Lào Cai
+Điện thoại: 024.xxxx.xxxx
+Email: haiquan@laocai.gov.vn
+Giờ làm việc: Thứ 2 - Thứ 6, từ 7:30 đến 17:00
+
+Cổng thông tin điện tử: https://customs.gov.vn
+Tra cứu hồ sơ: https://www.vnaccs.gov.vn
+
+===== HẾT TÀI LIỆU =====
