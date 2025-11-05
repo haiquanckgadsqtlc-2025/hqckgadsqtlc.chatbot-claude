@@ -7,7 +7,7 @@ const CONFIG = {
     MODEL_NAME: 'gemini-flash-latest',
     
     // Cấu hình AI
-    TEMPERATURE: 1.0,        // Độ chính xác cao (0.0-1.0)
+    TEMPERATURE: 0.6,        // Độ chính xác cao (0.0-1.0)
     MAX_TOKENS: 2048,        // Độ dài câu trả lời
     TOP_P: 0.8,
     TOP_K: 40,
@@ -55,4 +55,5 @@ LƯU Ý:
 - KHÔNG dùng từ ngữ mơ hồ như "có thể", "thường thì"
 - Luôn lịch sự, chuyên nghiệp
 - Trả lời bằng tiếng Việt`;
+
 
