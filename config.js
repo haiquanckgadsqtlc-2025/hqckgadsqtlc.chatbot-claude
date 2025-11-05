@@ -4,7 +4,7 @@ const CONFIG = {
     GEMINI_API_KEY: 'AIzaSyDIGiAT12zb2koOjATIJj6wvVDrCuHCd7I',
     
     // Model sử dụng - Gemini 1.5 Flash (nhanh nhất, miễn phí)
-    MODEL_NAME: 'gemini-1.5-flash-latest',
+    MODEL_NAME: 'gemini-flash-latest',
     
     // Cấu hình AI
     TEMPERATURE: 1.0,        // Độ chính xác cao (0.0-1.0)
@@ -55,3 +55,4 @@ LƯU Ý:
 - KHÔNG dùng từ ngữ mơ hồ như "có thể", "thường thì"
 - Luôn lịch sự, chuyên nghiệp
 - Trả lời bằng tiếng Việt`;
+
