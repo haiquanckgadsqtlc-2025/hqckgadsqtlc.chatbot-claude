@@ -564,9 +564,10 @@ body {
 
 /* Chatbot Toggle Button */
 .chatbot-toggle {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
+    position: fixed !important;   /* Cố định */
+    bottom: 30px !important;
+    right: 30px !important;       /* Bên PHẢI */
+    left: auto !important;        /* Xóa left */
     width: 65px;
     height: 65px;
     border-radius: 50%;
@@ -576,10 +577,7 @@ body {
     font-size: 30px;
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    z-index: 999;
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-}
+    z-index: 
 
 .chatbot-toggle:hover {
     transform: scale(1.15) rotate(5deg);
@@ -657,4 +655,5 @@ body {
         font-size: 22px;
     }
 }
+
 
