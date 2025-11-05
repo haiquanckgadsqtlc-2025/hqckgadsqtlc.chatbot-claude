@@ -287,26 +287,26 @@ body {
 
 /* ===== CHATBOT STYLES ===== */
 
-/* Chatbot Container */
+/* Chatbot Container - LUÔN CỐ ĐỊNH BÊN PHẢI */
 .chatbot-container {
-    position: fixed !important;  /* Thêm !important để ưu tiên cao nhất */
+    position: fixed !important;
     bottom: 100px !important;
-    right: 30px !important;      /* Đảm bảo ở bên PHẢI */
-    left: auto !important;       /* Xóa bất kỳ thuộc tính left nào */
+    right: 30px !important;
+    left: auto !important;
     width: 400px;
     height: 600px;
     background: white;
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    display: none;
+    display: none;  /* Mặc định ẩn */
     flex-direction: column;
     overflow: hidden;
-    z-index: 9999 !important;    /* Tăng z-index lên cao nhất */
+    z-index: 9999 !important;
     animation: slideUp 0.4s ease;
 }
 
 .chatbot-container.active {
-    display: flex;
+    display: flex !important;  /* Hiện khi có class active */
 }
 
 @keyframes slideUp {
@@ -718,6 +718,7 @@ body {
         font-size: 22px;
     }
 }
+
 
 
 
