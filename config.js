@@ -1,14 +1,14 @@
 // ===== CẤU HÌNH GOOGLE GEMINI =====
 const CONFIG = {
-    // THAY API KEY CỦA BẠN VÀO ĐÂY (từ Bước 1)
-    GEMINI_API_KEY: 'AIzaSyDIGiAT12zb2koOjATIJj6wvVDrCuHCd7I',
+    // THAY API KEY CỦA BẠN VÀO ĐÂY
+    GEMINI_API_KEY: 'AIzaSyDm8TxOTHRWL_THAY_API_KEY_CUA_BAN_VAO_DAY',
     
     // Model sử dụng
-    MODEL_NAME: 'gemini-flash-lastest',
+    MODEL_NAME: 'gemini-pro',
     
     // Cấu hình AI
-    TEMPERATURE: 1.0,  // Độ chính xác (0.0 = chính xác nhất, 1.0 = sáng tạo nhất)
-    MAX_TOKENS: 1024,   // Độ dài câu trả lời tối đa
+    TEMPERATURE: 0.3,
+    MAX_TOKENS: 1024,
     
     // Thông tin website
     WEBSITE_INFO: {
@@ -19,7 +19,7 @@ const CONFIG = {
     }
 };
 
-// System prompt - Hướng dẫn AI cách trả lời
+// System prompt
 const SYSTEM_PROMPT = `Bạn là trợ lý AI chuyên nghiệp của Hải quan cửa khẩu ga đường sắt quốc tế Lào Cai.
 
 NHIỆM VỤ:
@@ -32,7 +32,7 @@ QUY TẮC TRẢ LỜI:
 2. Tìm thông tin chính xác trong tài liệu
 3. Trả lời bằng 2-4 câu, có đánh số thứ tự nếu cần
 4. Trích dẫn điều, khoản, thông tư nếu có
-5. Nếu không tìm thấy thông tin → Trả lời: "Xin lỗi, tôi không tìm thấy thông tin này trong tài liệu hiện có. Vui lòng liên hệ hotline 024.xxxx.xxxx để được hỗ trợ trực tiếp."
+5. Nếu không tìm thấy thông tin → Trả lời: "Xin lỗi, tôi không tìm thấy thông tin này trong tài liệu hiện có. Vui lòng liên hệ hotline để được hỗ trợ trực tiếp."
 
 PHONG CÁCH:
 - Lịch sự, chuyên nghiệp
