@@ -86,40 +86,85 @@ class ChatbotAI {
     }
 
     setupEventListeners() {
-        const sendBtn = document.getElementById('sendBtn');
-        const userInput = document.getElementById('userInput');
-        const chatbotToggle = document.getElementById('chatbotToggle');
-        const minimizeBtn = document.getElementById('minimizeBtn');
-        const chatbotContainer = document.getElementById('chatbotContainer');
+    const sendBtn = document.getElementById('sendBtn');
+    const userInput = document.getElementById('userInput');
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const minimizeBtn = document.getElementById('minimizeBtn');
+    const chatbotContainer = document.getElementById('chatbotContainer');
 
-        if (sendBtn) {
-            sendBtn.addEventListener('click', () => this.sendMessage());
-        }
+    this.log('🔧 Thiết lập event listeners...');
 
-        if (userInput) {
-            userInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && !this.isLoading) {
-                    this.sendMessage();
-                }
-            });
-        }
-
-        if (chatbotToggle && chatbotContainer) {
-            chatbotToggle.addEventListener('click', () => {
-                chatbotContainer.classList.add('active');
-                chatbotToggle.classList.add('hidden');
-                if (userInput) userInput.focus();
-            });
-        }
-
-        if (minimizeBtn && chatbotContainer && chatbotToggle) {
-            minimizeBtn.addEventListener('click', () => {
-                chatbotContainer.classList.remove('active');
-                chatbotToggle.classList.remove('hidden');
-            });
-        }
+    // Debug: Kiểm tra các element có tồn tại không
+    if (!sendBtn) {
+        console.error('❌ Không tìm thấy sendBtn');
+    }
+    if (!userInput) {
+        console.error('❌ Không tìm thấy userInput');
+    }
+    if (!chatbotToggle) {
+        console.error('❌ Không tìm thấy chatbotToggle');
+    }
+    if (!chatbotContainer) {
+        console.error('❌ Không tìm thấy chatbotContainer');
     }
 
+    // Gửi tin nhắn khi click nút
+    if (sendBtn) {
+        sendBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.log('🖱️ Click nút gửi');
+            this.sendMessage();
+        });
+    }
+
+    // Gửi tin nhắn khi nhấn Enter
+    if (userInput) {
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !this.isLoading) {
+                e.preventDefault();
+                this.log('⌨️ Nhấn Enter');
+                this.sendMessage();
+            }
+        });
+
+        // Focus vào input khi chatbot mở
+        userInput.addEventListener('focus', () => {
+            this.log('✏️ Input được focus');
+        });
+    }
+
+    // Mở chatbot
+    if (chatbotToggle && chatbotContainer) {
+        chatbotToggle.addEventListener('click', () => {
+            this.log('🖱️ Click mở chatbot');
+            
+            chatbotContainer.classList.add('active');
+            chatbotToggle.classList.add('hidden');
+            
+            // Debug: Kiểm tra class đã thêm chưa
+            this.log('📊 Chatbot container classes:', chatbotContainer.className);
+            
+            // Focus vào input sau khi mở
+            setTimeout(() => {
+                if (userInput) {
+                    userInput.focus();
+                    this.log('✅ Đã focus vào input');
+                }
+            }, 300);
+        });
+    }
+
+    // Đóng chatbot
+    if (minimizeBtn && chatbotContainer && chatbotToggle) {
+        minimizeBtn.addEventListener('click', () => {
+            this.log('🖱️ Click đóng chatbot');
+            chatbotContainer.classList.remove('active');
+            chatbotToggle.classList.remove('hidden');
+        });
+    }
+
+    this.log('✅ Đã thiết lập tất cả event listeners');
+}
     async sendMessage() {
         const userInput = document.getElementById('userInput');
         const message = userInput.value.trim();
@@ -510,5 +555,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.chatbot = new ChatbotAI();
 });
+
 
 
