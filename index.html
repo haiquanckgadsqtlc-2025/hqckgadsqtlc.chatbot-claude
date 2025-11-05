@@ -106,60 +106,64 @@
         </div>
     </footer>
 
-    <!-- Chatbot Container -->
-    <div class="chatbot-container" id="chatbotContainer">
-        <div class="chatbot-header">
-            <div class="header-content">
+  <!-- Chatbot Container -->
+<div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-header">
+        <div class="header-content">
+            <i class="fas fa-robot"></i>
+            <div>
+                <span class="chatbot-title">Trợ lý AI Hải Quan</span>
+                <span class="chatbot-status">● Online</span>
+            </div>
+        </div>
+        <button class="minimize-btn" id="minimizeBtn" title="Thu nhỏ">
+            <i class="fas fa-minus"></i>
+        </button>
+    </div>
+    
+    <div class="chatbot-messages" id="chatMessages">
+        <div class="message bot-message">
+            <div class="message-avatar">
                 <i class="fas fa-robot"></i>
-                <div>
-                    <span class="chatbot-title">HQ CK GA ĐSQT LÀO CAI</span>
-                    <span class="chatbot-status">● Online</span>
-                </div>
             </div>
-            <button class="minimize-btn" id="minimizeBtn" title="Thu nhỏ">
-                <i class="fas fa-minus"></i>
-            </button>
-        </div>
-        
-        <div class="chatbot-messages" id="chatMessages">
-            <div class="message bot-message">
-                <div class="message-avatar">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <div class="message-content">
-                    <p>👋 Xin chào! Tôi là trợ lý ảo của Hải quan cửa khẩu Ga Đường sắt quốc tế Lào Cai</p>
-                    <p>Tôi có thể giúp bạn về thủ tục hải quan, quy định xuất nhập khẩu.</p>
-                    <p><strong>Bạn cần hỏi gì?</strong></p>
-                </div>
+            <div class="message-content">
+                <p>👋 Xin chào! Tôi là trợ lý AI của Hải quan Lào Cai.</p>
+                <p>Tôi có thể giúp bạn về thủ tục hải quan, quy định xuất nhập khẩu.</p>
+                <p><strong>Bạn cần hỏi gì?</strong></p>
             </div>
         </div>
-
-        <div class="chatbot-input">
-            <input 
-                type="text" 
-                id="userInput" 
-                placeholder="Nhập câu hỏi của bạn..."
-                autocomplete="off"
-            >
-            <button id="sendBtn" title="Gửi">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-
-      
     </div>
 
-    <!-- Chatbot Toggle Button -->
-    <button class="chatbot-toggle" id="chatbotToggle" title="Mở chatbot">
-        <i class="fas fa-comments"></i>
-        <span class="notification-badge">AI</span>
-    </button>
+    <!-- PHẦN NÀY QUAN TRỌNG - ĐẢM BẢO CÓ ĐẦY ĐỦ -->
+    <div class="chatbot-input">
+        <input 
+            type="text" 
+            id="userInput" 
+            placeholder="Nhập câu hỏi của bạn..."
+            autocomplete="off"
+        >
+        <button id="sendBtn" title="Gửi">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </div>
+
+    <div class="chatbot-footer">
+        <small>Powered by Google Gemini AI</small>
+    </div>
+</div>
+
+<!-- Chatbot Toggle Button -->
+<button class="chatbot-toggle" id="chatbotToggle" title="Mở chatbot">
+    <i class="fas fa-comments"></i>
+    <span class="notification-badge">AI</span>
+</button>
 
     <!-- Scripts -->
     <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
