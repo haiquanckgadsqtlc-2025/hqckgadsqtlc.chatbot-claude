@@ -502,13 +502,15 @@ body {
     }
 }
 
-/* Chatbot Input */
+/* ===== CHATBOT INPUT ===== */
 .chatbot-input {
-    display: flex;
+    display: flex !important;  /* Thêm !important */
     padding: 18px 20px;
     background: white;
     border-top: 1px solid #e2e8f0;
     gap: 12px;
+    align-items: center;
+    flex-shrink: 0;  /* Không cho co lại */
 }
 
 .chatbot-input input {
@@ -520,11 +522,18 @@ body {
     font-family: 'Times New Roman', Times, serif;
     outline: none;
     transition: border-color 0.3s;
+    background: white;
+    color: #333;
 }
 
 .chatbot-input input:focus {
     border-color: #2a5298;
     box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+}
+
+.chatbot-input input::placeholder {
+    color: #999;
+    font-style: italic;
 }
 
 .chatbot-input button {
@@ -538,6 +547,9 @@ body {
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .chatbot-input button:hover {
@@ -547,6 +559,10 @@ body {
 
 .chatbot-input button:active {
     transform: scale(0.95);
+}
+
+.chatbot-input button i {
+    pointer-events: none;
 }
 
 /* Chatbot Footer */
@@ -702,6 +718,7 @@ body {
         font-size: 22px;
     }
 }
+
 
 
 
