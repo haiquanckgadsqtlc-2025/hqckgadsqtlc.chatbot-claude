@@ -1,0 +1,212 @@
+An ninh: 10.3, 11.1, 11.2
+	Án tích (An ninh nhân sự): 10.3
+B
+	Báo cáo (Doanh nghiệp ưu tiên): 12.2, 12.3
+	Bản khai chung (Tàu biển): 35.1, 35.2
+	Bản khai hàng hóa (Tàu bay/Tàu biển): 32.1, 32.2, 35.1, 35.2
+	Bản lược khai hành lý ký gửi (Tàu bay): 32.1, 32.2
+	Bưu chính, chuyển phát nhanh: 1.1
+C
+	Cảng cạn (ICD): 1.3
+	Cơ sở gia công, sản xuất hàng hóa xuất khẩu: 20, 21
+	Cửa khẩu nhập đầu tiên (Trị giá nhập khẩu): 8.2
+	Cửa khẩu xuất (Trị giá xuất khẩu): 8.1
+	Cục Hải quan (Tiếp nhận hồ sơ Ưu tiên): 11.3
+D
+	Danh sách hành khách (Tàu bay/Tàu biển): 32.1, 32.2, 35.1, 35.2
+	Danh sách thuyền viên (Tàu biển): 35.1, 35.2
+	Địa điểm làm thủ tục hải quan: 1.1, 1.3
+	Địa điểm tập kết, kiểm tra, giám sát tập trung: 1.1
+	Doanh nghiệp ưu tiên: 4, 5, 6, 7, 10, 11, 12
+		Công nhận, gia hạn: 6.4, 6.5
+		Điều kiện: 5.1, 5.2, 5.3, 5.4, 5.5
+		Đình chỉ: 6.7
+		Kim ngạch: 5.4
+		Miễn kiểm tra sau thông quan: 4.4
+		Tạm đình chỉ: 6.6
+		Trách nhiệm: 7.2
+	Doanh nghiệp kinh doanh cảng, kho, bãi (Kiểm tra hàng hóa): 14.2, 14.3, 18
+G
+	Gia công, sản xuất hàng hóa xuất khẩu: 20, 21, 22
+		Kiểm tra cơ sở: 21
+		Thông báo cơ sở: 20.1
+	Giải phóng hàng hóa: 16
+	Giám định: 15.5, 16.1
+	Giấy phép (Khai hải quan): 12.3
+H
+	Hàng hóa xuất khẩu, nhập khẩu tại chỗ: 19
+	Hàng hóa quá cảnh: 1.1
+	Hành lý vượt định mức miễn thuế (Khai hải quan): 12.2
+	Hồ sơ đề nghị áp dụng chế độ ưu tiên: 6.1, 6.2
+	Hồ sơ hải quan (Dạng điện tử/số hóa): 12.4
+K
+	Khai hải quan: 12.2, 12.3, 12.4, 12.5, 12.10
+		Khai mới (Thay đổi mục đích): 12.5
+		Phương thức (Điện tử/Giấy): 12.2
+	Kiểm tra hải quan: 3, 13.4
+		Trong quá trình lưu giữ: 14
+	Kiểm tra cơ sở gia công, sản xuất: 21
+	Kiểm tra chuyên ngành: 17.1, 17.2
+		Lấy mẫu: 17.2
+	Kiểm tra sau thông quan (Doanh nghiệp ưu tiên): 6.4, 6.5, 7.1
+	Kiểm tra trị giá hải quan: 9
+	Kiểm định hải quan: 15.5
+M
+	Mã số, xuất xứ, trị giá hải quan (Xác định trước): 11
+N
+	Người được ủy quyền (Thủ tục hải quan): 2.3
+	Người khai hải quan: 12.3, 12.4, 12.5
+P
+	Phân tích, phân loại: 15.5, 16.1
+	Phương tiện chứa hàng hóa (Quay vòng tạm nhập, tạm xuất): 1.1
+	Phương tiện vận tải (Đối tượng phải làm thủ tục hải quan): 3.1
+	Phương thức khai hải quan (Điện tử/Giấy): 12.2
+T
+	Tạm nhập, tái xuất/Tạm xuất, tái nhập (Thay đổi mục đích): 12.5
+	Tham vấn (Trị giá hải quan): 9.3
+	Thẩm định (Doanh nghiệp ưu tiên): 6.4
+	Thời hạn nộp hồ sơ (Xác định trước): 11.2
+	Trách nhiệm (Cơ quan quản lý chuyên ngành): 17.1
+	Trị giá hải quan: 8, 9, 10
+		Kiểm tra: 9
+		Sử dụng cho mục đích thống kê: 10
+		Xuất khẩu: 8.1
+		Nhập khẩu: 8.2
+	Tỷ giá tính thuế: 9.5
+X
+	Xác định trước mã số, xuất xứ, trị giá hải quan: 11
+
+
+Cổng thông tin một cửa quốc gia: 33.1, 33.2, 33.4, 34.2, 36.1, 36.2, 36.3, 36.5, 37.1, 37.4
+C
+	Cảng vụ hàng hải: 36.3, 37.1
+	Cửa khẩu nhập đầu tiên (Hàng hóa quá cảnh): 23.1
+	Cửa khẩu xuất cuối cùng (Hàng hóa quá cảnh): 23.1
+	Chứng từ vận tải: 23.2, 25.2, 28.2, 28.3, 27.4
+	Chuyển tải, lưu kho: 23.3, 23.4, 23.5, 36.1, 36.6, 37.3
+	Chuyển tiêu thụ nội địa: 25.7, 28.7
+D
+	Danh mục hàng hóa cấm kinh doanh: 23.7
+	Doanh nghiệp kinh doanh cảng hàng không: 34.1
+	Doanh nghiệp kinh doanh cảng biển: 37.2
+G
+	Giám sát hải quan: 23.7, 24.3, 26, 27.5, 33.5, 36.6, 37.2
+	Giấy phép nhập khẩu (Hành lý): 30.5, 30.6
+H
+	Hàng hóa quá cảnh: 23
+	Hàng hóa trung chuyển tại cảng biển: 24
+	Hàng hóa tái nhập đã xuất khẩu: 25
+	Hàng hóa nhập khẩu phải tái xuất: 26
+	Hàng hóa cung ứng cho tàu bay, tàu biển: 31
+	Hành lý người xuất cảnh, nhập cảnh: 29, 30
+		Miễn thuế: 29.2, 29.2, 30.7
+		Tạm gửi: 29.5, 29.6
+		Gửi trước/gửi sau chuyến đi: 30.4
+	Hồ sơ hải quan: 23.2, 25.2, 26.1, 27.3, 27.4, 28.2, 28.3, 32, 35
+	Hãng hàng không: 34.2
+	Hãng tàu: 37.4
+K
+	Kiểm tra thực tế hàng hóa: 23.3, 23.4, 24.3, 24.4, 24.6
+P
+	Phương tiện chứa hàng hóa quay vòng (tạm nhập, tạm xuất): 27
+	Phương tiện kỹ thuật (Giám sát): 23.7
+S
+	Sửa đổi, bổ sung hồ sơ hải quan: 32.1, 32.2, 33.1, 33.4, 35.1, 35.2, 36.1, 36.5
+T
+	Tái nhập (Thời hạn tiêu hủy, tái xuất): 25.5 (12 tháng)
+	Tái xuất (Hàng hóa nhập khẩu): 26
+	Tạm nhập, tái xuất/Tạm xuất, tái nhập: 28
+		Thời hạn: 28.6
+	Tàu bay xuất cảnh, nhập cảnh, quá cảnh: 32, 33, 34
+		Hồ sơ: 32.1, 32.2
+		Quá cảnh (Dừng kỹ thuật): 32.3
+	Tàu biển xuất cảnh, nhập cảnh, quá cảnh, chuyển cảng: 35, 36, 37
+		Hồ sơ: 35.1, 35.2
+		Chuyển cảng: 35.4, 36.4
+		Quá cảnh (Lãnh hải): 36.4
+	Tàu đường sắt xuất cảnh: 38
+	Thuyền trưởng (Tàu biển): 37.3
+
+
+
+A
+	An ninh (Tàu đường sắt): 40.1
+B
+	Bãi bỏ: 61.2
+	Biên bản kiểm tra (Kiểm tra sau thông quan): 54.3
+	Biện pháp nghiệp vụ kiểm soát hải quan: 55.1
+C
+	Cảng vụ hàng hải (Tạm hoãn khởi hành): 56.3
+	Cục Hải quan (Thay thế cụm từ): 60.1
+	Cục trưởng Cục Hải quan (Thẩm quyền Kiểm tra sau thông quan): 52.1
+D
+	Địa điểm thu gom hàng lẻ (Xử lý hàng hóa quá thời hạn): 50.1
+	Đội trưởng Hải quan (Thẩm quyền): 51.1, 56.2, 57.2, 60.1
+G
+	Gia hạn (Phương tiện vận tải thô sơ): 48.6
+	Giấy phép liên vận: 43.1, 44.1
+	Giám sát hải quan: 45.4, 47.6, 48.6
+H
+	Hải quan cửa khẩu (Thay thế cụm từ): 60.1
+	Hệ thống xử lý dữ liệu điện tử hải quan (Sự cố): 39.1, 39.3
+	Hiệp định GMS (Ô tô): 43.3, 44.3
+	Hồ sơ hải quan (Tàu đường sắt): 39.1, 39.3, 40.1
+	Hồ sơ hải quan (Ô tô, mô tô, xe gắn máy): 43.1, 44.1
+	Hồ sơ hải quan (Phương tiện thủy nội địa): 47.1, 47.2
+K
+	Kết luận kiểm tra (Kiểm tra sau thông quan): 52.2
+	Kiểm tra một cửa, một lần dừng: 45.5
+	Kiểm tra sau thông quan: 51, 52, 53, 54
+		Quản lý rủi ro: 54.1
+		Tạm dừng: 53.2
+		Thẩm quyền quyết định: 51.1, 52.1
+		Thời hạn ban hành kết luận: 52.2 (15 ngày)
+		Thời hạn thông báo kết quả: 51.2 (05 ngày)
+		Trình tự hoạt động: 54.3
+		Xử lý kết quả: 54.4
+	Kho ngoại quan (Hàng hóa xuất kho): 49.5
+L
+	Lưu giữ hàng hóa (Kho ngoại quan): 49.5 (15 ngày)
+N
+	Nghị định 151/2024/NĐ-CP (Phương tiện cơ giới nước ngoài): 48.4
+	Niêm phong hải quan (Tàu đường sắt): 40.1
+O
+	Ô tô, mô tô, xe gắn máy: 42, 43, 44, 45, 48
+		Hồ sơ nhập cảnh: 43.1
+		Hồ sơ xuất cảnh: 44.1
+		Tạm nhập - tái xuất/Tạm xuất - tái nhập (Cùng cửa khẩu): 48.8
+P
+	Phương tiện cơ giới nước ngoài: 48.4
+	Phương tiện thô sơ và các phương tiện khác qua lại biên giới: 48.6
+		Thời gian giao nhận hàng hóa (Đường bộ/Đường thủy nội địa): 48.6 (48 giờ/72 giờ)
+	Phương tiện thủy nội địa: 46, 47
+		Giám sát hải quan: 47.6
+		Tàu thuyền quá cảnh (Sông Tiền, Sông Hậu): 47.5
+	Phương tiện vận tải (Dừng, tạm hoãn khởi hành): 56
+	Phương tiện vận tải (Truy đuổi): 57
+	Phương tiện vận tải (Tuyến cố định - Khai 01 lần): 48.1 (30 ngày)
+	Phương tiện vận tải (Đặc thù - Cứu thương, cứu hỏa...): 48.2
+	Phương tiện vận tải (Vận hành tự động/Băng tải, ống dẫn...): 48.5
+	Phương tiện vận tải (Trang bị/Quyền ưu tiên): 58
+Q
+	Quản lý rủi ro (Kiểm tra sau thông quan): 54.1
+	Quản lý rủi ro (Ô tô, mô tô, xe gắn máy): 45.2, 45.3
+	Quản lý rủi ro (Phương tiện thủy nội địa): 47.4
+S
+	Sửa đổi, bổ sung thông tin hồ sơ hải quan (Tàu đường sắt): 39.2
+T
+	Tái nhập, tái xuất (Ô tô, mô tô, xe gắn máy): 45.1, 48.8
+	Tạm hoãn việc khởi hành và dừng phương tiện vận tải: 56
+	Tạm nhập - tái xuất/Tạm xuất - tái nhập (Cùng cửa khẩu): 48.8
+	Tàu đường sắt liên vận quốc tế: 39, 40, 41
+		Kiểm tra thực tế: 40.1
+		Niêm phong hải quan: 40.1
+		Thời hạn làm thủ tục: 40.3 (01 giờ)
+		Thời hạn cung cấp thông tin: 39.1
+		Trách nhiệm Trưởng ga/Trưởng tàu: 41.1
+	Tiêu hủy lô hàng (Kho ngoại quan): 49.4
+	Thông báo kết quả kiểm tra (Kiểm tra sau thông quan): 51.2
+	Thông tin hải quan (Thu thập, cung cấp): 59
+	Trang bị phương tiện phục vụ phòng, chống buôn lậu: 58
+	Trách nhiệm Trưởng ga/Trưởng tàu liên vận quốc tế: 41.1
+	Truy đuổi phương tiện vận tải: 57
