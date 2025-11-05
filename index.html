@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi cục Hải quan khu vực VII </title>
+    <title>Chatbot Hải Quan Lào Cai</title>
+    <meta name="description" content="Hệ thống chatbot AI hỗ trợ tra cứu thủ tục hải quan 24/7">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="container">
-            <div class="logo-section">
-                <img src="logo.png" alt="Logo Hải Quan" class="logo">
-            </div>
-            <div class="title-section">
-                <h1 class="main-title">HẢI QUAN CỬA KHẨU GA ĐƯỜNG SẮT QUỐC TẾ LÀO CAI</h1>
-                <p class="subtitle">CHUYÊN NGHIỆP – MINH BẠCH – HIỆU QUẢ</p>
+            <div class="header-content">
+                <div class="logo-section">
+                    <!-- Thay logo.png bằng logo thật hoặc xóa nếu không có -->
+                    <img src="logo.png" alt="Logo Hải Quan" class="logo" onerror="this.style.display='none'">
+                </div>
+                <div class="title-section">
+                    <h1 class="main-title">HẢI QUAN CỬA KHẨU GA ĐƯỜNG SẮT QUỐC TẾ LÀO CAI</h1>
+                    <p class="subtitle">CHUYÊN NGHIỆP – MINH BẠCH – HIỆU QUẢ</p>
+                </div>
             </div>
         </div>
     </header>
@@ -23,32 +32,67 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="container">
+            <!-- Welcome Section -->
             <div class="welcome-box">
-                <h2>Hệ thống hỗ trợ trực tuyến 24/7</h2>
-                <p>Vui lòng sử dụng chatbot phía dưới để được tư vấn về:</p>
-                <ul>
-                    <li>Thủ tục hải quan xuất nhập khẩu</li>
-                    <li>Quy định về hàng hóa, phân bón, hóa chất</li>
-                    <li>Giám sát hàng hóa đường sắt</li>
-                    <li>Các văn bản pháp lý hải quan</li>
+                <h2>🤖 Hệ thống Chatbot AI hỗ trợ 24/7</h2>
+                <p>Trợ lý ảo thông minh được đào tạo bởi Google Gemini, sẵn sàng tư vấn về:</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Thủ tục hải quan xuất nhập khẩu hàng hóa</li>
+                    <li><i class="fas fa-check-circle"></i> Quy định về phân bón, phot pho, hóa chất</li>
+                    <li><i class="fas fa-check-circle"></i> Giám sát hàng hóa qua đường sắt quốc tế</li>
+                    <li><i class="fas fa-check-circle"></i> Tra cứu văn bản pháp lý hải quan</li>
                 </ul>
+                <div class="cta-box">
+                    <p><strong>👇 Click vào icon chatbot góc dưới bên phải để bắt đầu</strong></p>
+                </div>
             </div>
 
+            <!-- Info Cards -->
             <div class="info-section">
                 <div class="info-card">
-                    <h3>📞 Liên hệ</h3>
-                    <p>Hotline: 024.xxxx.xxxx</p>
-                    <p>Email: haiquan@laocai.gov.vn</p>
+                    <div class="card-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Liên hệ</h3>
+                    <p><strong>Hotline:</strong> 024.xxxx.xxxx</p>
+                    <p><strong>Email:</strong> haiquan@laocai.gov.vn</p>
                 </div>
+
                 <div class="info-card">
-                    <h3>⏰ Giờ làm việc</h3>
-                    <p>Thứ 2 - Thứ 6: 7:30 - 17:00</p>
-                    <p>Thứ 7 - CN: Nghỉ</p>
+                    <div class="card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Giờ làm việc</h3>
+                    <p><strong>T2 - T6:</strong> 7:30 - 17:00</p>
+                    <p><strong>T7 - CN:</strong> Nghỉ</p>
                 </div>
+
                 <div class="info-card">
-                    <h3>📍 Địa chỉ</h3>
+                    <div class="card-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Địa chỉ</h3>
                     <p>Ga Đường sắt quốc tế</p>
-                    <p>TP. Lào Cai</p>
+                    <p>TP. Lào Cai, Việt Nam</p>
+                </div>
+            </div>
+
+            <!-- FAQ Preview -->
+            <div class="faq-section">
+                <h2>❓ Câu hỏi thường gặp</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <strong>Q: Thời gian xử lý hồ sơ hải quan là bao lâu?</strong>
+                        <p>A: Trung bình 2-3 ngày làm việc đối với hồ sơ đầy đủ hợp lệ.</p>
+                    </div>
+                    <div class="faq-item">
+                        <strong>Q: Cần giấy tờ gì để nhập khẩu phân bón?</strong>
+                        <p>A: Giấy phép nhập khẩu, tờ khai hải quan, hợp đồng, hóa đơn...</p>
+                    </div>
+                    <div class="faq-item">
+                        <strong>Q: Chatbot có thể trả lời chính xác không?</strong>
+                        <p>A: Chatbot được đào tạo từ tài liệu chính thức, độ chính xác ~85%.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,23 +101,64 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 CHI CỤC HẢI QUAN KHU VỰC VII </p>
+            <p>&copy; 2024 Hải Quan Lào Cai. Powered by Google Gemini AI</p>
+            <p><small>Phát triển bởi Hệ thống Chatbot AI • Phiên bản 1.0</small></p>
         </div>
     </footer>
 
-    <!-- Chatbase Embed Code - THAY ĐỔI Ở BƯỚC 7 -->
-    <script>
-        window.embeddedChatbotConfig = {
-            chatbotId: "YOUR_CHATBOT_ID_HERE",
-            domain: "www.chatbase.co"
-        }
-    </script>
-    <script
-        src="https://www.chatbase.co/embed.min.js"
-        chatbotId="YOUR_CHATBOT_ID_HERE"
-        domain="www.chatbase.co"
-        defer>
-    </script>
-</body>
+    <!-- Chatbot Container -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <div class="header-content">
+                <i class="fas fa-robot"></i>
+                <div>
+                    <span class="chatbot-title">Trợ lý AI Hải Quan</span>
+                    <span class="chatbot-status">● Online</span>
+                </div>
+            </div>
+            <button class="minimize-btn" id="minimizeBtn" title="Thu nhỏ">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>👋 Xin chào! Tôi là trợ lý AI của Hải quan Lào Cai.</p>
+                    <p>Tôi có thể giúp bạn về thủ tục hải quan, quy định xuất nhập khẩu.</p>
+                    <p><strong>Bạn cần hỏi gì?</strong></p>
+                </div>
+            </div>
+        </div>
 
+        <div class="chatbot-input">
+            <input 
+                type="text" 
+                id="userInput" 
+                placeholder="Nhập câu hỏi của bạn..."
+                autocomplete="off"
+            >
+            <button id="sendBtn" title="Gửi">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+
+        <div class="chatbot-footer">
+            <small>Powered by Google Gemini AI</small>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle Button -->
+    <button class="chatbot-toggle" id="chatbotToggle" title="Mở chatbot">
+        <i class="fas fa-comments"></i>
+        <span class="notification-badge">AI</span>
+    </button>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
 </html>
