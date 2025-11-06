@@ -13,6 +13,107 @@ const CONFIG = {
     },
     DEBUG: true
 };
+// ===== TỪ ĐIỂN VIẾT TẮT HẢI QUAN =====
+const ABBREVIATIONS = {
+    // Hải quan
+    'hq': 'hải quan',
+    'cqhq': 'cơ quan hải quan',
+    'tchq': 'thủ tục hải quan',
+    'cbhq': 'cán bộ hải quan',
+    
+    // Xuất nhập khẩu
+    'xnk': 'xuất nhập khẩu',
+    'nk': 'nhập khẩu',
+    'xk': 'xuất khẩu',
+    'xxnk': 'xuất xuất nhập khẩu',
+    
+    // Hàng hóa
+    'hh': 'hàng hóa',
+    'hhxk': 'hàng hóa xuất khẩu',
+    'hhnk': 'hàng hóa nhập khẩu',
+    'hhxnk': 'hàng hóa xuất nhập khẩu',
+    
+    // Giấy tờ
+    'gt': 'giấy tờ',
+    'gtxnk': 'giấy tờ xuất nhập khẩu',
+    'hs': 'hồ sơ',
+    'hshq': 'hồ sơ hải quan',
+    'tkhq': 'tờ khai hải quan',
+    'tk': 'tờ khai',
+    
+    // Vận tải
+    'pt': 'phương tiện',
+    'ptvt': 'phương tiện vận tải',
+    'tb': 'tàu biển',
+    'mb': 'máy bay',
+    'xt': 'xe tải',
+    'dsat': 'đường sắt',
+    
+    // Thủ tục
+    'tt': 'thủ tục',
+    'tthq': 'thủ tục hải quan',
+    'gs': 'giám sát',
+    'kt': 'kiểm tra',
+    'kthq': 'kiểm tra hải quan',
+    'gshq': 'giám sát hải quan',
+    
+    // Cơ quan
+    'bnn': 'bộ nông nghiệp',
+    'bct': 'bộ công thương',
+    'bgtvt': 'bộ giao thông vận tải',
+    'btc': 'bộ tài chính',
+    
+    // Văn bản
+    'nđ': 'nghị định',
+    'nd': 'nghị định',
+    'tt': 'thông tư',
+    'qđ': 'quyết định',
+    'cv': 'công văn',
+    
+    // Địa điểm
+    'ck': 'cửa khẩu',
+    'ckhq': 'cửa khẩu hải quan',
+    'ga': 'ga đường sắt',
+    'chk': 'cảng hàng không',
+    'cb': 'cảng biển',
+    
+    // Loại hình
+    'dn': 'doanh nghiệp',
+    'dnxnk': 'doanh nghiệp xuất nhập khẩu',
+    'pb': 'phân bón',
+    'hc': 'hóa chất',
+    'pp': 'phot pho',
+    'hhnh': 'hàng hóa nguy hiểm',
+    
+    // Quy trình
+    'qc': 'quá cảnh',
+    'ct': 'chuyển tải',
+    'np': 'niêm phong',
+    'tc': 'thông quan',
+    'xl': 'xử lý',
+    
+    // Thời gian
+    'ngày': 'ngày',
+    'h': 'giờ',
+    'th': 'tháng',
+    
+    // Khác
+    'vn': 'việt nam',
+    'qte': 'quốc tế',
+    'nn': 'nông nghiệp',
+    'cn': 'công nghiệp',
+    'tmdv': 'thương mại dịch vụ'
+};
+
+// Danh sách từ viết tắt có dấu chấm (N.Đ, T.T, Q.Đ...)
+const ABBREVIATIONS_WITH_DOTS = {
+    'n.đ': 'nghị định',
+    'n.d': 'nghị định',
+    't.t': 'thông tư',
+    'q.đ': 'quyết định',
+    'q.d': 'quyết định',
+    'c.v': 'công văn'
+};
 
 const SYSTEM_PROMPT = `Bạn là trợ lý AI chuyên nghiệp của Hải quan Lào Cai, chuyên tư vấn về thủ tục hải quan và quy định pháp luật.
 
