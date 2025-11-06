@@ -13,108 +13,271 @@ const CONFIG = {
     },
     DEBUG: true
 };
-// ===== TỪ ĐIỂN VIẾT TẮT HẢI QUAN =====
-const ABBREVIATIONS = {
-    // Hải quan
-    'hq': 'hải quan',
+// ===== TỪ ĐIỂN LỖI CHÍNH TẢ THƯỜNG GẶP =====
+const SPELL_CORRECTIONS = {
+    'chinh': 'chính',
+    'sach': 'sách',
+    'tuc': 'tục',
+    'quan': 'quan',  // để nguyên nếu đúng
+    'qua': 'quá',    // context-aware
+    'canh': 'cảnh',
+    'cang': 'cảng',
+    'duong': 'đường',
+    'sat': 'sắt',
+    'truong': 'trưởng',
+    'thue': 'thuế',
+    'kiem': 'kiểm',
+    'giam': 'giám',
+    'niem': 'niêm',
+    'phong': 'phong',
+    'van': 'vận',
+    'chuyen': 'chuyển',
+    'tai': 'tải',
+    'nhap': 'nhập',
+    'xuat': 'xuất',
+    'khau': 'khẩu'
+};
+
+// ===== TỪ ĐIỂN CỤM TỪ VIẾT TẮT (Ưu tiên cao nhất) =====
+const PHRASE_ABBREVIATIONS = {
+    // Từ câu hỏi thực tế của bạn
+    'tt hq': 'thủ tục hải quan',
+    'tthq': 'thủ tục hải quan',
+    'hs hq': 'hồ sơ hải quan',
+    'hshq': 'hồ sơ hải quan',
+    'gs hq': 'giám sát hải quan',
+    'gshq': 'giám sát hải quan',
+    'kt hq': 'kiểm tra hải quan',
+    'kthq': 'kiểm tra hải quan',
+    'cq hq': 'cơ quan hải quan',
     'cqhq': 'cơ quan hải quan',
-    'tchq': 'thủ tục hải quan',
-    'cbhq': 'cán bộ hải quan',
     
-    // Xuất nhập khẩu
+    // Hàng hóa
+    'hh xnk': 'hàng hóa xuất nhập khẩu',
+    'hh nk': 'hàng hóa nhập khẩu',
+    'hh xk': 'hàng hóa xuất khẩu',
+    'hh qc': 'hàng hóa quá cảnh',
+    'hh gia cong': 'hàng hóa gia công',
+    'hh gc': 'hàng hóa gia công',
+    'hh vcdl': 'hàng hóa vận chuyển dọc đường',
+    'hh sxxk': 'hàng hóa sản xuất xuất khẩu',
+    
+    // Doanh nghiệp
+    'dn xnk': 'doanh nghiệp xuất nhập khẩu',
+    'dn cx': 'doanh nghiệp chế xuất',
+    'dncx': 'doanh nghiệp chế xuất',
+    'dn uu tien': 'doanh nghiệp ưu tiên',
+    'dn cb': 'doanh nghiệp cảng biển',
+    
+    // Chính sách
+    'cs xnk': 'chính sách xuất nhập khẩu',
+    'cs hq': 'chính sách hải quan',
+    'cs tv gia': 'chính sách tham vấn giá',
+    
+    // Thủ tục đặc biệt
+    'tt gs hq': 'thủ tục giám sát hải quan',
+    'tt xnc': 'thủ tục xuất nhập cảnh',
+    'tt qc': 'thủ tục quá cảnh',
+    
+    // Văn bản
+    'nd 167': 'nghị định 167',
+    'tt 167': 'thông tư 167',
+    'tt167': 'thông tư 167',
+    
+    // Vận tải
+    'vc dl': 'vận chuyển dọc đường',
+    'vcdl': 'vận chuyển dọc đường',
+    'vc nd': 'vận chuyển nội địa',
+    'vc qt': 'vận chuyển quốc tế',
+    
+    // Loại hình
+    'tn tx': 'trong nước tạm xuất',
+    'tn-tx': 'trong nước tạm xuất',
+    'sx xk': 'sản xuất xuất khẩu',
+    'sxxk': 'sản xuất xuất khẩu'
+};
+
+// ===== TỪ ĐIỂN TỪ ĐƠN (Ưu tiên thứ 2) =====
+const WORD_ABBREVIATIONS = {
+    // Cơ bản
+    'hq': 'hải quan',
     'xnk': 'xuất nhập khẩu',
     'nk': 'nhập khẩu',
     'xk': 'xuất khẩu',
-    'xxnk': 'xuất xuất nhập khẩu',
-    
-    // Hàng hóa
     'hh': 'hàng hóa',
-    'hhxk': 'hàng hóa xuất khẩu',
-    'hhnk': 'hàng hóa nhập khẩu',
-    'hhxnk': 'hàng hóa xuất nhập khẩu',
-    
-    // Giấy tờ
-    'gt': 'giấy tờ',
-    'gtxnk': 'giấy tờ xuất nhập khẩu',
     'hs': 'hồ sơ',
-    'hshq': 'hồ sơ hải quan',
-    'tkhq': 'tờ khai hải quan',
     'tk': 'tờ khai',
-    
-    // Vận tải
+    'gt': 'giấy tờ',
     'pt': 'phương tiện',
-    'ptvt': 'phương tiện vận tải',
-    'tb': 'tàu biển',
-    'mb': 'máy bay',
-    'xt': 'xe tải',
-    'dsat': 'đường sắt',
     
-    // Thủ tục
-    'tt': 'thủ tục',
-    'tthq': 'thủ tục hải quan',
+    // Thủ tục - Thông tư (đa nghĩa)
+    'tt': ['thủ tục', 'thông tư'],
+    
+    // Giám sát & Kiểm tra
     'gs': 'giám sát',
     'kt': 'kiểm tra',
-    'kthq': 'kiểm tra hải quan',
-    'gshq': 'giám sát hải quan',
-    
-    // Cơ quan
-    'bnn': 'bộ nông nghiệp',
-    'bct': 'bộ công thương',
-    'bgtvt': 'bộ giao thông vận tải',
-    'btc': 'bộ tài chính',
-    
-    // Văn bản
-    'nđ': 'nghị định',
-    'nd': 'nghị định',
-    'tt': 'thông tư',
-    'qđ': 'quyết định',
-    'cv': 'công văn',
-    
-    // Địa điểm
-    'ck': 'cửa khẩu',
-    'ckhq': 'cửa khẩu hải quan',
-    'ga': 'ga đường sắt',
-    'chk': 'cảng hàng không',
-    'cb': 'cảng biển',
-    
-    // Loại hình
-    'dn': 'doanh nghiệp',
-    'dnxnk': 'doanh nghiệp xuất nhập khẩu',
-    'pb': 'phân bón',
-    'hc': 'hóa chất',
-    'pp': 'phot pho',
-    'hhnh': 'hàng hóa nguy hiểm',
-    
-    // Quy trình
+    'tc': 'thông quan',
     'qc': 'quá cảnh',
     'ct': 'chuyển tải',
     'np': 'niêm phong',
-    'tc': 'thông quan',
-    'xl': 'xử lý',
     
-    // Thời gian
-    'ngày': 'ngày',
-    'h': 'giờ',
-    'th': 'tháng',
+    // Cơ quan & Cán bộ
+    'cq': 'cơ quan',
+    'cb': ['cán bộ', 'cảng biển'],
+    
+    // Doanh nghiệp & Cơ sở
+    'dn': 'doanh nghiệp',
+    'cs': 'cơ sở',
+    'cx': 'chế xuất',
+    'dncx': 'doanh nghiệp chế xuất',
+    
+    // Vận tải
+    'vc': 'vận chuyển',
+    'vt': 'vận tải',
+    'tb': 'tàu biển',
+    'mb': 'máy bay',
+    'xt': 'xe tải',
+    'ds': 'đường sắt',
+    'dsat': 'đường sắt',
+    'ck': 'cửa khẩu',
+    
+    // Xuất nhập cảnh
+    'xnc': 'xuất nhập cảnh',
+    
+    // Văn bản
+    'nd': 'nghị định',
+    'nđ': 'nghị định',
+    'qd': 'quyết định',
+    'cv': 'công văn',
+    'vb': 'văn bản',
+    
+    // Loại hàng
+    'pb': 'phân bón',
+    'hc': 'hóa chất',
+    'pp': 'phot pho',
+    'gc': 'gia công',
     
     // Khác
-    'vn': 'việt nam',
-    'qte': 'quốc tế',
-    'nn': 'nông nghiệp',
-    'cn': 'công nghiệp',
-    'tmdv': 'thương mại dịch vụ'
+    'dl': 'dọc đường',
+    'nd': 'nội địa',
+    'qt': 'quốc tế',
+    'ut': 'ưu tiên',
+    'tv': 'tham vấn',
+    'sx': 'sản xuất',
+    'tn': 'trong nước',
+    'tx': 'tạm xuất'
 };
 
-// Danh sách từ viết tắt có dấu chấm (N.Đ, T.T, Q.Đ...)
-const ABBREVIATIONS_WITH_DOTS = {
-    'n.đ': 'nghị định',
-    'n.d': 'nghị định',
-    't.t': 'thông tư',
-    'q.đ': 'quyết định',
-    'q.d': 'quyết định',
-    'c.v': 'công văn'
+// ===== NGUYÊN TẮC NGỮ CẢNH =====
+const CONTEXT_RULES = {
+    'tt': {
+        'thủ tục': ['hq', 'hải quan', 'xnk', 'đối với', 'hh', 'hàng hóa', 'gs', 'giám sát'],
+        'thông tư': ['số', '/', 'quy định', 'về', '167', '38']
+    },
+    'cb': {
+        'cán bộ': ['hải quan', 'kiểm tra', 'giám sát', 'hq'],
+        'cảng biển': ['doanh nghiệp', 'dn', 'quy định']
+    },
+    'cs': {
+        'cơ sở': ['sản xuất', 'kinh doanh', 'kho', 'bãi'],
+        'chính sách': ['xnk', 'hải quan', 'ưu tiên']
+    }
 };
 
+// ===== TỪ ĐỒNG NGHĨA (Không dấu) =====
+const SYNONYMS = {
+    'thu tuc': 'thủ tục',
+    'thutuc': 'thủ tục',
+    'ho so': 'hồ sơ',
+    'hoso': 'hồ sơ',
+    'hang hoa': 'hàng hóa',
+    'hanghoa': 'hàng hóa',
+    'hai quan': 'hải quan',
+    'haiquan': 'hải quan',
+    'xuat nhap khau': 'xuất nhập khẩu',
+    'xuatnhapkhau': 'xuất nhập khẩu',
+    'nhap khau': 'nhập khẩu',
+    'nhapkhau': 'nhập khẩu',
+    'xuat khau': 'xuất khẩu',
+    'xuatkhau': 'xuất khẩu',
+    'co quan': 'cơ quan',
+    'coquan': 'cơ quan',
+    'doanh nghiep': 'doanh nghiệp',
+    'doanhnghiep': 'doanh nghiệp',
+    'che xuat': 'chế xuất',
+    'chexuat': 'chế xuất',
+    'giam sat': 'giám sát',
+    'giamsat': 'giám sát',
+    'kiem tra': 'kiểm tra',
+    'kiemtra': 'kiểm tra',
+    'van chuyen': 'vận chuyển',
+    'vanchuyen': 'vận chuyển',
+    'duong sat': 'đường sắt',
+    'duongsat': 'đường sắt',
+    'cua khau': 'cửa khẩu',
+    'cuakhau': 'cửa khẩu',
+    'phan bon': 'phân bón',
+    'phanbon': 'phân bón',
+    'hoa chat': 'hóa chất',
+    'hoachat': 'hóa chất',
+    'gia cong': 'gia công',
+    'giacong': 'gia công',
+    'qua canh': 'quá cảnh',
+    'quacanh': 'quá cảnh',
+    'thong quan': 'thông quan',
+    'thongquan': 'thông quan',
+    'niem phong': 'niêm phong',
+    'niemphong': 'niêm phong',
+    'san xuat': 'sản xuất',
+    'sanxuat': 'sản xuất',
+    'tam xuat': 'tạm xuất',
+    'tamxuat': 'tạm xuất',
+    'trong nuoc': 'trong nước',
+    'trongnuoc': 'trong nước',
+    'quoc te': 'quốc tế',
+    'quocte': 'quốc tế',
+    'noi dia': 'nội địa',
+    'noidia': 'nội địa',
+    'uu tien': 'ưu tiên',
+    'uutien': 'ưu tiên',
+    'chinh sach': 'chính sách',
+    'chinhsach': 'chính sách',
+    'tham van': 'tham vấn',
+    'thamvan': 'tham vấn',
+    'doc duong': 'dọc đường',
+    'docduong': 'dọc đường',
+    'nghi dinh': 'nghị định',
+    'nghidinh': 'nghị định',
+    'thong tu': 'thông tư',
+    'thongtu': 'thông tư',
+    'quyet dinh': 'quyết định',
+    'quyetdinh': 'quyết định',
+    'cong van': 'công văn',
+    'congvan': 'công văn'
+};
+
+// ===== GỢI Ý AUTOCOMPLETE =====
+const AUTOCOMPLETE_SUGGESTIONS = [
+    'thủ tục hải quan',
+    'thủ tục hải quan đối với đường sắt',
+    'thủ tục hải quan hàng quá cảnh',
+    'thủ tục giám sát hải quan',
+    'hồ sơ hải quan',
+    'hồ sơ cần thiết để nhập khẩu',
+    'chính sách xuất nhập khẩu',
+    'chính sách hải quan',
+    'chính sách tham vấn giá',
+    'doanh nghiệp chế xuất',
+    'doanh nghiệp ưu tiên',
+    'hàng hóa gia công',
+    'hàng hóa quá cảnh',
+    'hàng hóa vận chuyển dọc đường',
+    'thông tư 167',
+    'nghị định 167',
+    'trách nhiệm trưởng ga',
+    'ô tô trong nước tạm xuất',
+    'sản xuất xuất khẩu'
+];
 const SYSTEM_PROMPT = `Bạn là trợ lý AI chuyên nghiệp của Hải quan Lào Cai, chuyên tư vấn về thủ tục hải quan và quy định pháp luật.
 
 NHIỆM VỤ:
@@ -404,3 +567,10 @@ Hotline: 024.xxxx.xxxx
 Email: haiquan@laocai.gov.vn
 
 Giờ làm việc: Thứ 2 - Thứ 6, 7:30-17:00`;
+
+
+console.log('✅ Config loaded - Full dictionary ready');
+console.log('📚', Object.keys(PHRASE_ABBREVIATIONS).length, 'phrase abbreviations');
+console.log('📚', Object.keys(WORD_ABBREVIATIONS).length, 'word abbreviations');
+console.log('📚', Object.keys(SYNONYMS).length, 'synonyms');
+console.log('📚', Object.keys(SPELL_CORRECTIONS).length, 'spell corrections');
