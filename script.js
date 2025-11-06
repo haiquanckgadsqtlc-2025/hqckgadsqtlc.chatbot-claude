@@ -12,6 +12,54 @@ class ChatbotAI {
         
         this.init();
     }
+    // === THÊM HÀM MỚI Ở ĐÂY ===
+    
+    expandAbbreviations(text) {
+        console.log('📝 Input gốc:', text);
+        
+        let expandedText = text;
+        
+        // Bước 1: Xử lý từ viết tắt có dấu chấm (n.đ, t.t, q.đ)
+        Object.keys(ABBREVIATIONS_WITH_DOTS).forEach(abbr => {
+            const regex = new RegExp('\\b' + abbr.replace(/\./g, '\\.') + '\\b', 'gi');
+            expandedText = expandedText.replace(regex, ABBREVIATIONS_WITH_DOTS[abbr]);
+        });
+        
+        // Bước 2: Xử lý từ viết tắt thông thường
+        // Sắp xếp theo độ dài giảm dần để ưu tiên từ dài hơn
+        const sortedAbbreviations = Object.keys(ABBREVIATIONS).sort((a, b) => b.length - a.length);
+        
+        sortedAbbreviations.forEach(abbr => {
+            // Tạo regex: chỉ match whole word, không phân biệt hoa/thường
+            const regex = new RegExp('\\b' + abbr + '\\b', 'gi');
+            expandedText = expandedText.replace(regex, ABBREVIATIONS[abbr]);
+        });
+        
+        // Bước 3: Xử lý số + từ viết tắt (VD: "167/2025/nđ-cp")
+        expandedText = expandedText.replace(/(\d+\/\d+\/)(nđ|nd)(-[a-z]+)/gi, '$1Nghị định$3');
+        expandedText = expandedText.replace(/(\d+\/\d+\/)(tt)(-[a-z]+)/gi, '$1Thông tư$3');
+        
+        // Bước 4: Chuẩn hóa khoảng trắng
+        expandedText = expandedText.replace(/\s+/g, ' ').trim();
+        
+        console.log('✅ Input đã mở rộng:', expandedText);
+        
+        // Trả về object để có thể hiển thị cả 2 phiên bản
+        return {
+            original: text,
+            expanded: expandedText,
+            hasAbbreviation: expandedText !== text
+        };
+    }
+
+    // === KẾT THÚC HÀM MỚI ===
+
+    async init() {
+        console.log('🚀 Bắt đầu init...');
+        await this.loadDocuments();
+        this.setupEventListeners();
+        console.log('✅ Init hoàn tất');
+    }
 
     async init() {
         console.log('🚀 Bắt đầu init...');
