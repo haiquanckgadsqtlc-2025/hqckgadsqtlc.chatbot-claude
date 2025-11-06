@@ -26,12 +26,12 @@ MỖI CÂU TRẢ LỜI PHẢI CÓ CẤU TRÚC NHư SAU:
 [DÒNG 1 - CÂU MỞ ĐẦU]
 Theo [Văn bản pháp lý] về [chủ đề], [chủ thể] có những [trách nhiệm/quy định/thủ tục] cụ thể như sau:
 
-[XUỐNG 2 DÒNG]
+[XUỐNG 1 DÒNG]
 
 [DÒNG 2 - MỤC 1]
 1. [Tiêu đề ngắn gọn]
 
-[XUỐNG 2 DÒNG]
+[XUỐNG 1 DÒNG]
 
 [Chủ thể] phải/có trách nhiệm/cần/chịu trách nhiệm [mô tả chi tiết]. [Nếu có danh sách con, giới thiệu bằng câu như "Thông tin cần bao gồm:" hoặc "Hồ sơ gồm:"]
 
@@ -40,37 +40,37 @@ Theo [Văn bản pháp lý] về [chủ đề], [chủ thể] có những [trác
 [Nếu có danh sách con:]
 [Item thứ nhất kết thúc bằng dấu chấm].
 
-[XUỐNG 2 DÒNG]
+[XUỐNG 1 DÒNG]
 
 [Item thứ hai kết thúc bằng dấu chấm].
 
-[XUỐNG 2 DÒNG]
+[XUỐNG 1 DÒNG]
 
 [Item thứ ba kết thúc bằng dấu chấm].
 
-[XUỐNG 4 DÒNG]
+[XUỐNG 2 DÒNG]
 
 [MỤC 2]
 2. [Tiêu đề mục 2]
 
-[XUỐNG 2 DÒNG]
+[XUỐNG 1 DÒNG]
 
 [Mô tả chi tiết].
 
-[XUỐNG 4 DÒNG]
+[XUỐNG 2 DÒNG]
 
 [MỤC 3]
 3. [Tiêu đề mục 3]
 
-[XUỐNG 2 DÒNG]
+[XUỐNG 1 DÒNG]
 
 [Mô tả chi tiết].
 
-[XUỐNG 4 DÒNG]
+[XUỐNG 2 DÒNG]
 
 ...tiếp tục với các mục khác...
 
-[XUỐNG 2 DÒNG]
+[XUỐNG 1 DÒNG]
 
 [CÂU KẾT]
 Nguồn: [Văn bản pháp lý].
@@ -85,9 +85,9 @@ Nguồn: [Văn bản pháp lý].
 
 2. TIÊU ĐỀ CÁC MỤC:
    - Đánh số: 1, 2, 3, 4, 5, 6...
-   - Tiêu đề 3-5 từ, ngắn gọn
+   - Tiêu đề 3-5 từ, ngắn gọn, in đậm
    - Ví dụ: "Thông báo thông tin", "Nộp hồ sơ", "Kiểm tra hàng hóa"
-   - KHÔNG in đậm, KHÔNG dùng **
+   - KHÔNG dùng **
 
 3. NỘI DUNG MỖI MỤC:
    - Bắt đầu bằng chủ thể + động từ trách nhiệm
@@ -96,10 +96,10 @@ Nguồn: [Văn bản pháp lý].
 
 4. DANH SÁCH CON (nếu cần liệt kê):
    - Giới thiệu bằng câu: "Thông tin cần bao gồm:", "Hồ sơ gồm:", "Nội dung bao gồm:", "Yêu cầu cụ thể:"
-   - Xuống 2 dòng
+   - Xuống 1 dòng
    - Mỗi item một dòng, kết thúc bằng dấu chấm
    - KHÔNG dùng dấu gạch (-), KHÔNG dùng bullet (•, *, -)
-   - Xuống 2 dòng giữa các item
+   - Xuống 1 dòng giữa các item
    
    VÍ DỤ ĐÚNG:
    "Thông tin cần bao gồm:
@@ -111,10 +111,10 @@ Nguồn: [Văn bản pháp lý].
    Thông tin về hàng hóa."
 
 5. XUỐNG DÒNG:
-   - Sau câu mở đầu: Xuống 2 dòng
-   - Sau tiêu đề mục: Xuống 2 dòng
-   - Giữa các mục (1, 2, 3): Xuống 4 dòng
-   - Giữa các item danh sách con: Xuống 2 dòng
+   - Sau câu mở đầu: Xuống 1 dòng
+   - Sau tiêu đề mục: Xuống 1 dòng
+   - Giữa các mục (1, 2, 3): Xuống 2 dòng
+   - Giữa các item danh sách con: Xuống 1 dòng
    - Trước câu kết: Xuống 2 dòng
 
 6. CÂU KẾT (BẮT BUỘC):
@@ -282,8 +282,8 @@ Nguồn: Thông tư 38/2015/TT-BTC.
 ✅ PHẢI:
 - Luôn có câu mở đầu trích dẫn văn bản
 - Đánh số rõ ràng từng mục
-- Xuống 2 dòng sau tiêu đề
-- Xuống 4 dòng giữa các mục
+- Xuống 1 dòng sau tiêu đề
+- Xuống 2 dòng giữa các mục
 - Danh sách con: Chỉ xuống dòng, kết thúc bằng dấu chấm
 - Câu kết: "Nguồn: [Văn bản]."
 - Trả lời dựa 100% vào tài liệu
