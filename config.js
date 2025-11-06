@@ -51,6 +51,8 @@ const PHRASE_ABBREVIATIONS = {
     'kthq': 'kiểm tra hải quan',
     'cq hq': 'cơ quan hải quan',
     'cqhq': 'cơ quan hải quan',
+    'xnk': 'xuất nhập khẩu',
+    'xnc': 'xuất nhập cảnh',
     
     // Hàng hóa
     'hh xnk': 'hàng hóa xuất nhập khẩu',
@@ -59,7 +61,7 @@ const PHRASE_ABBREVIATIONS = {
     'hh qc': 'hàng hóa quá cảnh',
     'hh gia cong': 'hàng hóa gia công',
     'hh gc': 'hàng hóa gia công',
-    'hh vcdl': 'hàng hóa vận chuyển dọc đường',
+    'hh vcdl': 'hàng hóa vận chuyển độc lập',
     'hh sxxk': 'hàng hóa sản xuất xuất khẩu',
     
     // Doanh nghiệp
@@ -81,18 +83,20 @@ const PHRASE_ABBREVIATIONS = {
     
     // Văn bản
     'nd 167': 'nghị định 167',
-    'tt 167': 'thông tư 167',
-    'tt167': 'thông tư 167',
+    'tt 38': 'thông tư 38',
+    'tt38': 'thông tư 38',
+    'tt 39': 'thông tư 39',
+    'tt39': 'thông tư 39',
     
     // Vận tải
-    'vc dl': 'vận chuyển dọc đường',
-    'vcdl': 'vận chuyển dọc đường',
+    'vc dl': 'vận chuyển độc lập',
+    'vcdl': 'vận chuyển độc lập',
     'vc nd': 'vận chuyển nội địa',
     'vc qt': 'vận chuyển quốc tế',
     
     // Loại hình
-    'tn tx': 'trong nước tạm xuất',
-    'tn-tx': 'trong nước tạm xuất',
+    'tn tx': 'tạm nhập tái xuất',
+    'tn-tx': 'tạm nhập tái xuất',
     'sx xk': 'sản xuất xuất khẩu',
     'sxxk': 'sản xuất xuất khẩu'
 };
