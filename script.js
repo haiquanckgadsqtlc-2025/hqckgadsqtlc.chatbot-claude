@@ -1,4 +1,4 @@
-// ===== CHATBOT AI - VERSION SIMPLE =====
+// ===== CHATBOT AI - VERSION STABLE =====
 
 class ChatbotAI {
     constructor() {
@@ -6,73 +6,122 @@ class ChatbotAI {
         
         this.apiKey = CONFIG.GEMINI_API_KEY;
         this.modelName = CONFIG.MODEL_NAME;
-        this.apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/' + this.modelName + ':generateContent?key=' + this.apiKey;
+        this.apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${this.modelName}:generateContent?key=${this.apiKey}`;
         this.documentContent = '';
         this.isLoading = false;
         
         this.init();
     }
-    // === THÊM HÀM MỚI Ở ĐÂY ===
-    
+
+    // ===== HÀM XỬ LÝ VIẾT TẮT THEO CONFIG.JS =====
     expandAbbreviations(text) {
         console.log('📝 Input gốc:', text);
         
-        let expandedText = text;
-        
-        // Bước 1: Xử lý từ viết tắt có dấu chấm (n.đ, t.t, q.đ)
-        Object.keys(ABBREVIATIONS_WITH_DOTS).forEach(abbr => {
-            const regex = new RegExp('\\b' + abbr.replace(/\./g, '\\.') + '\\b', 'gi');
-            expandedText = expandedText.replace(regex, ABBREVIATIONS_WITH_DOTS[abbr]);
+        let expandedText = text.toLowerCase();
+        let hasChange = false;
+
+        // BƯỚC 1: Xử lý CỤM TỪ VIẾT TẮT (Ưu tiên cao nhất)
+        Object.keys(PHRASE_ABBREVIATIONS).forEach(abbr => {
+            const regex = new RegExp('\\b' + abbr.replace(/\s+/g, '\\s+') + '\\b', 'gi');
+            if (regex.test(expandedText)) {
+                expandedText = expandedText.replace(regex, PHRASE_ABBREVIATIONS[abbr]);
+                hasChange = true;
+            }
         });
-        
-        // Bước 2: Xử lý từ viết tắt thông thường
-        // Sắp xếp theo độ dài giảm dần để ưu tiên từ dài hơn
-        const sortedAbbreviations = Object.keys(ABBREVIATIONS).sort((a, b) => b.length - a.length);
-        
-        sortedAbbreviations.forEach(abbr => {
-            // Tạo regex: chỉ match whole word, không phân biệt hoa/thường
-            const regex = new RegExp('\\b' + abbr + '\\b', 'gi');
-            expandedText = expandedText.replace(regex, ABBREVIATIONS[abbr]);
+
+        // BƯỚC 2: Xử lý TỪNG TỪ ĐƠN
+        const words = expandedText.split(/\s+/);
+        const processedWords = words.map((word, index) => {
+            const cleanWord = word.replace(/[.,!?;:]/g, '');
+            
+            if (WORD_ABBREVIATIONS[cleanWord]) {
+                const expansion = WORD_ABBREVIATIONS[cleanWord];
+                
+                // Xử lý từ có nhiều nghĩa (dùng context)
+                if (Array.isArray(expansion)) {
+                    const contextResult = this.resolveContext(cleanWord, words, index);
+                    hasChange = true;
+                    return word.replace(cleanWord, contextResult);
+                } else {
+                    hasChange = true;
+                    return word.replace(cleanWord, expansion);
+                }
+            }
+            return word;
         });
-        
-        // Bước 3: Xử lý số + từ viết tắt (VD: "167/2025/nđ-cp")
-        expandedText = expandedText.replace(/(\d+\/\d+\/)(nđ|nd)(-[a-z]+)/gi, '$1Nghị định$3');
-        expandedText = expandedText.replace(/(\d+\/\d+\/)(tt)(-[a-z]+)/gi, '$1Thông tư$3');
-        
-        // Bước 4: Chuẩn hóa khoảng trắng
+
+        expandedText = processedWords.join(' ');
+
+        // BƯỚC 3: Xử lý ĐỒNG NGHĨA (không dấu)
+        Object.keys(SYNONYMS).forEach(synonym => {
+            const regex = new RegExp('\\b' + synonym + '\\b', 'gi');
+            if (regex.test(expandedText)) {
+                expandedText = expandedText.replace(regex, SYNONYMS[synonym]);
+                hasChange = true;
+            }
+        });
+
+        // BƯỚC 4: Sửa lỗi chính tả
+        if (CONFIG.SPELL_CHECK_ENABLED) {
+            Object.keys(SPELL_CORRECTIONS).forEach(wrong => {
+                const regex = new RegExp('\\b' + wrong + '\\b', 'gi');
+                if (regex.test(expandedText)) {
+                    expandedText = expandedText.replace(regex, SPELL_CORRECTIONS[wrong]);
+                    hasChange = true;
+                }
+            });
+        }
+
+        // Chuẩn hóa khoảng trắng
         expandedText = expandedText.replace(/\s+/g, ' ').trim();
-        
+
         console.log('✅ Input đã mở rộng:', expandedText);
         
-        // Trả về object để có thể hiển thị cả 2 phiên bản
         return {
             original: text,
             expanded: expandedText,
-            hasAbbreviation: expandedText !== text
+            hasAbbreviation: hasChange
         };
     }
 
-    // === KẾT THÚC HÀM MỚI ===
+    // ===== GIẢI QUYẾT NGỮ CẢNH CHO TỪ ĐA NGHĨA =====
+    resolveContext(word, words, currentIndex) {
+        if (!CONTEXT_RULES[word]) {
+            return WORD_ABBREVIATIONS[word][0]; // Lấy nghĩa đầu tiên
+        }
 
+        const contexts = CONTEXT_RULES[word];
+        const contextWindow = words.slice(Math.max(0, currentIndex - 3), currentIndex + 4).join(' ');
+
+        for (const meaning in contexts) {
+            const keywords = contexts[meaning];
+            const matchCount = keywords.filter(kw => contextWindow.includes(kw)).length;
+            
+            if (matchCount > 0) {
+                console.log(`🎯 Context match: "${word}" → "${meaning}"`);
+                return meaning;
+            }
+        }
+
+        // Mặc định trả về nghĩa đầu tiên
+        return WORD_ABBREVIATIONS[word][0];
+    }
+
+    // ===== KHỞI TẠO =====
     async init() {
         console.log('🚀 Bắt đầu init...');
         await this.loadDocuments();
         this.setupEventListeners();
+        this.setupAutocomplete();
         console.log('✅ Init hoàn tất');
     }
 
-    async init() {
-        console.log('🚀 Bắt đầu init...');
-        await this.loadDocuments();
-        this.setupEventListeners();
-        console.log('✅ Init hoàn tất');
-    }
-
+    // ===== TẢI TÀI LIỆU =====
     async loadDocuments() {
         console.log('📄 Đang load tài liệu...');
         
         try {
-            this.showLoadingMessage('Đang tải tài liệu...');
+            this.showLoadingMessage('Đang tải tài liệu hải quan...');
             
             const files = [
                 'data/chi_muc.txt',
@@ -82,6 +131,7 @@ class ChatbotAI {
             ];
 
             let allContent = '';
+            let loadedCount = 0;
             
             for (let i = 0; i < files.length; i++) {
                 try {
@@ -89,10 +139,11 @@ class ChatbotAI {
                     if (response.ok) {
                         const text = await response.text();
                         allContent += text + '\n\n';
-                        console.log('✅ Loaded: ' + files[i]);
+                        loadedCount++;
+                        console.log(`✅ Loaded: ${files[i]}`);
                     }
                 } catch (err) {
-                    console.warn('⚠️ Skip: ' + files[i]);
+                    console.warn(`⚠️ Skip: ${files[i]}`);
                 }
             }
 
@@ -103,7 +154,14 @@ class ChatbotAI {
 
             this.documentContent = allContent;
             this.removeLoadingMessage();
-            console.log('✅ Loaded ' + allContent.length + ' ký tự');
+            
+            // Hiển thị thông báo chào mừng
+            this.addMessage(
+                `Xin chào! Tôi là trợ lý AI của Hải quan Lào Cai.\n\nTôi đã tải ${loadedCount} tài liệu và sẵn sàng hỗ trợ bạn về:\n\n✓ Thủ tục hải quan\n✓ Chính sách xuất nhập khẩu\n✓ Trách nhiệm các bên\n✓ Hồ sơ cần thiết\n\nBạn có thể nhập viết tắt như "tthq", "hh xnk", "dn cx"... tôi sẽ hiểu!`,
+                'bot'
+            );
+            
+            console.log(`✅ Loaded ${allContent.length} ký tự từ ${loadedCount} files`);
             
         } catch (error) {
             console.error('❌ Lỗi load:', error);
@@ -112,6 +170,7 @@ class ChatbotAI {
         }
     }
 
+    // ===== THIẾT LẬP SỰ KIỆN =====
     setupEventListeners() {
         console.log('🔧 Setup listeners...');
         
@@ -120,11 +179,6 @@ class ChatbotAI {
         const chatbotToggle = document.getElementById('chatbotToggle');
         const minimizeBtn = document.getElementById('minimizeBtn');
         const chatbotContainer = document.getElementById('chatbotContainer');
-
-        console.log('sendBtn:', sendBtn ? 'OK' : 'NULL');
-        console.log('userInput:', userInput ? 'OK' : 'NULL');
-        console.log('chatbotToggle:', chatbotToggle ? 'OK' : 'NULL');
-        console.log('chatbotContainer:', chatbotContainer ? 'OK' : 'NULL');
 
         if (sendBtn) {
             sendBtn.addEventListener('click', () => {
@@ -149,10 +203,7 @@ class ChatbotAI {
                 chatbotToggle.classList.add('hidden');
                 
                 setTimeout(() => {
-                    if (userInput) {
-                        userInput.focus();
-                        console.log('✏️ Input focused');
-                    }
+                    if (userInput) userInput.focus();
                 }, 300);
             });
         }
@@ -166,6 +217,65 @@ class ChatbotAI {
         }
     }
 
+    // ===== THIẾT LẬP AUTOCOMPLETE =====
+    setupAutocomplete() {
+        if (!CONFIG.AUTOCOMPLETE_ENABLED) return;
+
+        const userInput = document.getElementById('userInput');
+        const chatMessages = document.getElementById('chatMessages');
+        
+        if (!userInput) return;
+
+        // Tạo dropdown autocomplete
+        const dropdown = document.createElement('div');
+        dropdown.id = 'autocomplete-dropdown';
+        dropdown.className = 'autocomplete-dropdown';
+        dropdown.style.display = 'none';
+        
+        if (chatMessages) {
+            chatMessages.parentElement.appendChild(dropdown);
+        }
+
+        userInput.addEventListener('input', (e) => {
+            const value = e.target.value.toLowerCase();
+            
+            if (value.length < 2) {
+                dropdown.style.display = 'none';
+                return;
+            }
+
+            const matches = AUTOCOMPLETE_SUGGESTIONS.filter(suggestion => 
+                suggestion.toLowerCase().includes(value)
+            ).slice(0, 5);
+
+            if (matches.length > 0) {
+                dropdown.innerHTML = matches.map(match => 
+                    `<div class="autocomplete-item">${match}</div>`
+                ).join('');
+                dropdown.style.display = 'block';
+
+                // Xử lý click vào suggestion
+                dropdown.querySelectorAll('.autocomplete-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        userInput.value = item.textContent;
+                        dropdown.style.display = 'none';
+                        userInput.focus();
+                    });
+                });
+            } else {
+                dropdown.style.display = 'none';
+            }
+        });
+
+        // Ẩn dropdown khi click ra ngoài
+        document.addEventListener('click', (e) => {
+            if (e.target !== userInput) {
+                dropdown.style.display = 'none';
+            }
+        });
+    }
+
+    // ===== GỬI TIN NHẮN =====
     async sendMessage() {
         const userInput = document.getElementById('userInput');
         const message = userInput.value.trim();
@@ -176,29 +286,47 @@ class ChatbotAI {
         }
 
         console.log('💬 Send:', message);
+
+        // Xử lý viết tắt
+        const processed = this.expandAbbreviations(message);
+        
+        // Hiển thị tin nhắn gốc
         this.addMessage(message, 'user');
+        
+        // Nếu có viết tắt, hiển thị phiên bản đã mở rộng
+        if (processed.hasAbbreviation && CONFIG.DEBUG) {
+            this.addMessage(
+                `🔍 Tôi hiểu câu hỏi: "${processed.expanded}"`,
+                'bot'
+            );
+        }
+
         userInput.value = '';
 
         this.isLoading = true;
         const loadingId = this.showTypingIndicator();
 
         try {
-            const response = await this.callGeminiAPI(message);
+            const response = await this.callGeminiAPI(processed.expanded);
             this.removeTypingIndicator(loadingId);
             this.addMessage(response, 'bot');
         } catch (error) {
             console.error('❌ Error:', error);
             this.removeTypingIndicator(loadingId);
-            this.addMessage('Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại.', 'bot');
+            this.addMessage(
+                'Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.\n\nHoặc liên hệ: Hotline ' + CONFIG.WEBSITE_INFO.hotline,
+                'bot'
+            );
         } finally {
             this.isLoading = false;
         }
     }
 
+    // ===== GỌI API GEMINI =====
     async callGeminiAPI(userQuestion) {
-        console.log('🚀 Call API...');
+        console.log('🚀 Call Gemini API...');
         
-        const promptText = SYSTEM_PROMPT + '\n\nTÀI LIỆU:\n' + this.documentContent.substring(0, 30000) + '\n\nCÂU HỎI:\n' + userQuestion;
+        const promptText = `${SYSTEM_PROMPT}\n\nTÀI LIỆU:\n${this.documentContent.substring(0, 30000)}\n\nCÂU HỎI:\n${userQuestion}`;
 
         const requestBody = {
             contents: [{
@@ -208,7 +336,9 @@ class ChatbotAI {
             }],
             generationConfig: {
                 temperature: CONFIG.TEMPERATURE,
-                maxOutputTokens: CONFIG.MAX_TOKENS
+                maxOutputTokens: CONFIG.MAX_TOKENS,
+                topP: CONFIG.TOP_P,
+                topK: CONFIG.TOP_K
             }
         };
 
@@ -224,7 +354,7 @@ class ChatbotAI {
         console.log('📥 Response:', data);
 
         if (!response.ok) {
-            throw new Error('API Error: ' + response.status);
+            throw new Error(`API Error: ${response.status}`);
         }
 
         if (data.candidates && data.candidates[0] && data.candidates[0].content) {
@@ -233,70 +363,99 @@ class ChatbotAI {
             return answer;
         }
 
-        throw new Error('No response');
+        throw new Error('No response from API');
     }
 
+    // ===== TÀI LIỆU MẪU =====
     getSampleDocument() {
-        return 'TÀI LIỆU MẪU\n\nThủ tục hải quan tàu biển theo Nghị định 167/2025/NĐ-CP:\n1. Thông báo trước 24h\n2. Nộp hồ sơ qua NSW\n3. Kiểm tra hồ sơ trong 01 giờ\n4. Giám sát dỡ hàng\n5. Thông quan';
+        return `TÀI LIỆU MẪU - HẢI QUAN LÀO CAI
+
+THỦ TỤC HẢI QUAN TÀU BIỂN
+Theo Nghị định 167/2025/NĐ-CP:
+
+1. Thông báo trước
+Người khai hải quan phải thông báo trước 24 giờ cho cơ quan hải quan qua Cổng thông tin một cửa quốc gia.
+
+2. Nộp hồ sơ
+Hồ sơ gồm:
+- Bản khai chung tàu biển
+- Manifest (Bản khai hàng hóa)
+- Danh sách thuyền viên
+- Danh sách hành khách (nếu có)
+
+3. Kiểm tra và thông quan
+Cơ quan hải quan phản hồi trong 01 giờ.
+Hệ thống phân luồng: Xanh, Vàng, Đỏ.
+
+4. Giám sát dỡ hàng
+Hải quan giám sát, kiểm tra niêm phong container.
+
+TRÁCH NHIỆM TRƯỞNG GA ĐƯỜNG SẮT
+
+1. Thông báo thông tin tàu
+Thông báo qua mạng máy tính, fax về:
+- Số hiệu đầu tàu, toa xe
+- Thời gian tàu đến, dừng, rời ga
+- Thông tin hàng hóa xuất nhập khẩu
+
+2. Xác nhận chứng từ
+Xác nhận và đóng dấu chứng từ do Trưởng tàu nộp.
+
+3. Bố trí kho, bãi
+Kho hàng XNK phải tách biệt với hàng nội địa.
+
+4. Phối hợp kiểm tra
+Phối hợp với hải quan kiểm tra, giám sát.
+
+Nguồn: Nghị định 167/2025/NĐ-CP về thủ tục hải quan.`;
     }
 
-  addMessage(text, sender) {
-    const chatMessages = document.getElementById('chatMessages');
-    if (!chatMessages) return;
-    
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message ' + sender + '-message fade-in';
-    
-    const avatar = document.createElement('div');
-    avatar.className = 'message-avatar';
-    avatar.innerHTML = sender === 'bot' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
-    
-    const content = document.createElement('div');
-    content.className = 'message-content';
-    
-    if (sender === 'bot') {
-        // Format nâng cao cho bot message
-        let formattedText = text
-            // Xử lý xuống dòng đôi (tạo khoảng trắng lớn)
-            .replace(/\n\n\n\n/g, '<div class="large-spacing"></div>')  // 4 dòng
-            .replace(/\n\n/g, '<div class="medium-spacing"></div>')      // 2 dòng
-            .replace(/\n/g, '<br>')                                      // 1 dòng
-            
-            // Format tiêu đề mục có số (1. Tiêu đề)
-            .replace(/^(\d+)\.\s+([^\n<]+)/gm, '<div class="section-title">$1. $2</div>')
-            
-            // Highlight câu mở đầu "Theo ... như sau:"
-            .replace(/(Theo .+? như sau:)/gi, '<div class="intro-sentence">$1</div>')
-            
-            // Highlight văn bản pháp lý
-            .replace(/(Nghị định|Thông tư|Luật|Quyết định|Công văn)\s+(\d+\/\d+\/[A-Z\-]+)/gi, 
-                     '<span class="legal-reference">$1 $2</span>')
-            
-            // Highlight câu "Nguồn:"
-            .replace(/(Nguồn:.+?)(<div|<br|$)/gi, '<div class="source-line">$1</div>$2')
-            
-            // Highlight các động từ trách nhiệm
-            .replace(/\b(phải|có trách nhiệm|cần|chịu trách nhiệm)\b/gi, 
-                     '<span class="responsibility-verb">$1</span>')
-            
-            // Highlight câu giới thiệu danh sách
-            .replace(/([^.]+(?:bao gồm|gồm|như sau|cụ thể):)/gi, 
-                     '<div class="list-intro">$1</div>');
+    // ===== THÊM TIN NHẮN =====
+    addMessage(text, sender) {
+        const chatMessages = document.getElementById('chatMessages');
+        if (!chatMessages) return;
         
-        content.innerHTML = formattedText;
-    } else {
-        // User message - format đơn giản
-        content.innerHTML = '<p>' + text.replace(/\n/g, '<br>') + '</p>';
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}-message fade-in`;
+        
+        const avatar = document.createElement('div');
+        avatar.className = 'message-avatar';
+        avatar.innerHTML = sender === 'bot' 
+            ? '<i class="fas fa-robot"></i>' 
+            : '<i class="fas fa-user"></i>';
+        
+        const content = document.createElement('div');
+        content.className = 'message-content';
+        
+        if (sender === 'bot') {
+            // Format nâng cao cho bot message
+            let formattedText = text
+                .replace(/\n\n\n\n/g, '<div class="large-spacing"></div>')
+                .replace(/\n\n/g, '<div class="medium-spacing"></div>')
+                .replace(/\n/g, '<br>')
+                .replace(/^(\d+)\.\s+([^\n<]+)/gm, '<div class="section-title">$1. $2</div>')
+                .replace(/(Theo .+? như sau:)/gi, '<div class="intro-sentence">$1</div>')
+                .replace(/(Nghị định|Thông tư|Luật|Quyết định|Công văn)\s+(\d+\/\d+\/[A-ZĐ\-]+)/gi, 
+                         '<span class="legal-reference">$1 $2</span>')
+                .replace(/(Nguồn:.+?)(<div|<br|$)/gi, '<div class="source-line">$1</div>$2')
+                .replace(/\b(phải|có trách nhiệm|cần|chịu trách nhiệm)\b/gi, 
+                         '<span class="responsibility-verb">$1</span>')
+                .replace(/([^.]+(?:bao gồm|gồm|như sau|cụ thể):)/gi, 
+                         '<div class="list-intro">$1</div>');
+            
+            content.innerHTML = formattedText;
+        } else {
+            content.innerHTML = '<p>' + text.replace(/\n/g, '<br>') + '</p>';
+        }
+        
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(content);
+        chatMessages.appendChild(messageDiv);
+        
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
-    
-    messageDiv.appendChild(avatar);
-    messageDiv.appendChild(content);
-    chatMessages.appendChild(messageDiv);
-    
-    // Auto scroll
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
 
+    // ===== HIỂN THỊ TYPING INDICATOR =====
     showTypingIndicator() {
         const chatMessages = document.getElementById('chatMessages');
         if (!chatMessages) return null;
@@ -304,7 +463,12 @@ class ChatbotAI {
         const loadingDiv = document.createElement('div');
         loadingDiv.className = 'message bot-message';
         loadingDiv.id = 'typing-indicator';
-        loadingDiv.innerHTML = '<div class="message-avatar"><i class="fas fa-robot"></i></div><div class="message-content typing-indicator"><span></span><span></span><span></span></div>';
+        loadingDiv.innerHTML = `
+            <div class="message-avatar"><i class="fas fa-robot"></i></div>
+            <div class="message-content typing-indicator">
+                <span></span><span></span><span></span>
+            </div>
+        `;
         
         chatMessages.appendChild(loadingDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -325,7 +489,10 @@ class ChatbotAI {
         const loadingDiv = document.createElement('div');
         loadingDiv.id = 'document-loading';
         loadingDiv.className = 'message bot-message';
-        loadingDiv.innerHTML = '<div class="message-avatar"><i class="fas fa-robot"></i></div><div class="message-content"><p>' + text + '</p></div>';
+        loadingDiv.innerHTML = `
+            <div class="message-avatar"><i class="fas fa-robot"></i></div>
+            <div class="message-content"><p>${text}</p></div>
+        `;
         chatMessages.appendChild(loadingDiv);
     }
 
@@ -335,17 +502,19 @@ class ChatbotAI {
     }
 }
 
+// ===== KHỞI ĐỘNG CHATBOT =====
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 DOM Ready');
     console.log('📋 CONFIG:', typeof CONFIG !== 'undefined' ? 'OK' : 'MISSING');
     
     if (typeof CONFIG === 'undefined') {
         console.error('❌ CONFIG not found! Check config.js');
-        alert('Lỗi: File config.js chưa load. Vui lòng tải lại trang.');
+        alert('Lỗi: File config.js chưa load. Vui lòng kiểm tra thứ tự import script.');
         return;
     }
     
     window.chatbot = new ChatbotAI();
+    console.log('✅ Chatbot initialized successfully');
 });
 
-console.log('✅ Script.js loaded');
+console.log('✅ Script.js loaded - Version Stable');
