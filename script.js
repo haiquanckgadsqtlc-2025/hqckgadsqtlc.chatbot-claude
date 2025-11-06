@@ -192,29 +192,62 @@ class ChatbotAI {
         return 'TÀI LIỆU MẪU\n\nThủ tục hải quan tàu biển theo Nghị định 167/2025/NĐ-CP:\n1. Thông báo trước 24h\n2. Nộp hồ sơ qua NSW\n3. Kiểm tra hồ sơ trong 01 giờ\n4. Giám sát dỡ hàng\n5. Thông quan';
     }
 
-    addMessage(text, sender) {
-        const chatMessages = document.getElementById('chatMessages');
-        if (!chatMessages) return;
+  addMessage(text, sender) {
+    const chatMessages = document.getElementById('chatMessages');
+    if (!chatMessages) return;
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message ' + sender + '-message fade-in';
+    
+    const avatar = document.createElement('div');
+    avatar.className = 'message-avatar';
+    avatar.innerHTML = sender === 'bot' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
+    
+    const content = document.createElement('div');
+    content.className = 'message-content';
+    
+    if (sender === 'bot') {
+        // Format nâng cao cho bot message
+        let formattedText = text
+            // Xử lý xuống dòng đôi (tạo khoảng trắng lớn)
+            .replace(/\n\n\n\n/g, '<div class="large-spacing"></div>')  // 4 dòng
+            .replace(/\n\n/g, '<div class="medium-spacing"></div>')      // 2 dòng
+            .replace(/\n/g, '<br>')                                      // 1 dòng
+            
+            // Format tiêu đề mục có số (1. Tiêu đề)
+            .replace(/^(\d+)\.\s+([^\n<]+)/gm, '<div class="section-title">$1. $2</div>')
+            
+            // Highlight câu mở đầu "Theo ... như sau:"
+            .replace(/(Theo .+? như sau:)/gi, '<div class="intro-sentence">$1</div>')
+            
+            // Highlight văn bản pháp lý
+            .replace(/(Nghị định|Thông tư|Luật|Quyết định|Công văn)\s+(\d+\/\d+\/[A-Z\-]+)/gi, 
+                     '<span class="legal-reference">$1 $2</span>')
+            
+            // Highlight câu "Nguồn:"
+            .replace(/(Nguồn:.+?)(<div|<br|$)/gi, '<div class="source-line">$1</div>$2')
+            
+            // Highlight các động từ trách nhiệm
+            .replace(/\b(phải|có trách nhiệm|cần|chịu trách nhiệm)\b/gi, 
+                     '<span class="responsibility-verb">$1</span>')
+            
+            // Highlight câu giới thiệu danh sách
+            .replace(/([^.]+(?:bao gồm|gồm|như sau|cụ thể):)/gi, 
+                     '<div class="list-intro">$1</div>');
         
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'message ' + sender + '-message fade-in';
-        
-        const avatar = document.createElement('div');
-        avatar.className = 'message-avatar';
-        avatar.innerHTML = sender === 'bot' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
-        
-        const content = document.createElement('div');
-        content.className = 'message-content';
-        
-        let formattedText = text.replace(/\n/g, '<br>');
-        content.innerHTML = '<p>' + formattedText + '</p>';
-        
-        messageDiv.appendChild(avatar);
-        messageDiv.appendChild(content);
-        chatMessages.appendChild(messageDiv);
-        
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        content.innerHTML = formattedText;
+    } else {
+        // User message - format đơn giản
+        content.innerHTML = '<p>' + text.replace(/\n/g, '<br>') + '</p>';
     }
+    
+    messageDiv.appendChild(avatar);
+    messageDiv.appendChild(content);
+    chatMessages.appendChild(messageDiv);
+    
+    // Auto scroll
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
 
     showTypingIndicator() {
         const chatMessages = document.getElementById('chatMessages');
