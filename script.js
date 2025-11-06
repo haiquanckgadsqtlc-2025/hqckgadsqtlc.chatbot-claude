@@ -121,7 +121,7 @@ class ChatbotAI {
         console.log('📄 Đang load tài liệu...');
         
         try {
-            this.showLoadingMessage('Đang tải tài liệu hải quan...');
+            // this.showLoadingMessage('Đang tải tài liệu hải quan...');
             
             const files = [
                 'data/chi_muc.txt',
@@ -156,7 +156,7 @@ class ChatbotAI {
         } catch (error) {
             console.error('❌ Lỗi load:', error);
             this.documentContent = this.getSampleDocument();
-            this.removeLoadingMessage();
+          //  this.removeLoadingMessage();
         }
     }
 
