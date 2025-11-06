@@ -51,8 +51,7 @@ const PHRASE_ABBREVIATIONS = {
     'kthq': 'kiểm tra hải quan',
     'cq hq': 'cơ quan hải quan',
     'cqhq': 'cơ quan hải quan',
-    'xnk': 'xuất nhập khẩu',
-    'xnc': 'xuất nhập cảnh',
+   
     
     // Hàng hóa
     'hh xnk': 'hàng hóa xuất nhập khẩu',
@@ -66,6 +65,7 @@ const PHRASE_ABBREVIATIONS = {
     
     // Doanh nghiệp
     'dn xnk': 'doanh nghiệp xuất nhập khẩu',
+    'dnxnk': 'doanh nghiệp xuất nhập khẩu',
     'dn cx': 'doanh nghiệp chế xuất',
     'dncx': 'doanh nghiệp chế xuất',
     'dn uu tien': 'doanh nghiệp ưu tiên',
@@ -83,6 +83,7 @@ const PHRASE_ABBREVIATIONS = {
     
     // Văn bản
     'nd 167': 'nghị định 167',
+    'nđ 167': 'nghị định 167',
     'tt 38': 'thông tư 38',
     'tt38': 'thông tư 38',
     'tt 39': 'thông tư 39',
@@ -96,9 +97,14 @@ const PHRASE_ABBREVIATIONS = {
     
     // Loại hình
     'tn tx': 'tạm nhập tái xuất',
+    'tntx': 'tạm nhập tái xuất',
     'tn-tx': 'tạm nhập tái xuất',
+    'tx tn': 'tạm xuất tái nhập',
+    'tx-tn': 'tạm xuất tái nhập',
+    'txtn': 'tạm xuất tái nhập',
     'sx xk': 'sản xuất xuất khẩu',
     'sxxk': 'sản xuất xuất khẩu'
+    'sx-xk': 'sản xuất xuất khẩu'
 };
 
 // ===== TỪ ĐIỂN TỪ ĐƠN (Ưu tiên thứ 2) =====
@@ -162,8 +168,8 @@ const WORD_ABBREVIATIONS = {
     'gc': 'gia công',
     
     // Khác
-    'dl': 'dọc đường',
-    'nd': 'nội địa',
+    'dl': 'độc lập',
+    'nđ': 'nội địa',
     'qt': 'quốc tế',
     'ut': 'ưu tiên',
     'tv': 'tham vấn',
