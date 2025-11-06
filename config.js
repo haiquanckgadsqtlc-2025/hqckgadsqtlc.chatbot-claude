@@ -2,8 +2,8 @@
 const CONFIG = {
     GEMINI_API_KEY: 'AIzaSyDIGiAT12zb2koOjATIJj6wvVDrCuHCd7I',
     MODEL_NAME: 'gemini-flash-latest',
-    TEMPERATURE: 0.8,
-    MAX_TOKENS: 2048,
+    TEMPERATURE: 0.4,
+    MAX_TOKENS: 4096,
     TOP_P: 0.8,
     TOP_K: 40,
     WEBSITE_INFO: {
