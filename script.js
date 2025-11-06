@@ -152,17 +152,7 @@ class ChatbotAI {
                 console.log('📋 Dùng tài liệu mẫu');
             }
 
-            this.documentContent = allContent;
-            this.removeLoadingMessage();
-            
-            // Hiển thị thông báo chào mừng
-            this.addMessage(
-                `Xin chào! Tôi là trợ lý AI của Hải quan Lào Cai.\n\nTôi đã tải ${loadedCount} tài liệu và sẵn sàng hỗ trợ bạn về:\n\n✓ Thủ tục hải quan\n✓ Chính sách xuất nhập khẩu\n✓ Trách nhiệm các bên\n✓ Hồ sơ cần thiết\n\nBạn có thể nhập viết tắt như "tthq", "hh xnk", "dn cx"... tôi sẽ hiểu!`,
-                'bot'
-            );
-            
-            console.log(`✅ Loaded ${allContent.length} ký tự từ ${loadedCount} files`);
-            
+                       
         } catch (error) {
             console.error('❌ Lỗi load:', error);
             this.documentContent = this.getSampleDocument();
