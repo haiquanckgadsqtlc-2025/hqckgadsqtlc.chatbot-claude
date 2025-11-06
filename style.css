@@ -616,53 +616,106 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
-/* ===== FORMAT NÂNG CAO CHO TIN NHẮN ===== */
 
-.message-content strong {
-    color: #1e3c72;
+/* ===== FORMAT NÂNG CAO CHO TIN NHẮN BOT ===== */
+
+/* Khoảng cách - điều chỉnh spacing */
+.message-content .large-spacing {
+    height: 24px;  /* Khoảng cách lớn giữa các mục */
+}
+
+.message-content .medium-spacing {
+    height: 12px;  /* Khoảng cách vừa */
+}
+
+/* Tiêu đề các mục (1. , 2. , 3. ...) */
+.message-content .section-title {
     font-weight: bold;
+    color: #1e3c72;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    padding-left: 0;
+    line-height: 1.6;
 }
 
-.message-content p {
-    margin: 0;
-    line-height: 1.8;
-}
-
-.message-content br {
-    display: block;
-    content: "";
-    margin: 8px 0;
-}
-
-/* Tiêu đề mục */
-.message-content strong:first-child {
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 8px;
+/* Câu mở đầu "Theo ... như sau:" */
+.message-content .intro-sentence {
+    font-weight: 600;
     color: #2a5298;
     font-size: 15px;
+    margin-bottom: 20px;
+    line-height: 1.9;
+    background: linear-gradient(120deg, #e0f2fe 0%, #dbeafe 100%);
+    padding: 15px 18px;
+    border-radius: 10px;
+    border-left: 5px solid #2a5298;
+    box-shadow: 0 2px 8px rgba(42, 82, 152, 0.1);
 }
 
-/* Icon */
-.message-content i.fa-phone,
-.message-content i.fa-envelope,
-.message-content i.fa-clock,
-.message-content i.fa-check-circle,
-.message-content i.fa-times-circle,
-.message-content i.fa-exclamation-triangle {
-    margin-right: 5px;
+/* Văn bản pháp lý (Nghị định, Thông tư...) */
+.message-content .legal-reference {
+    background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #92400e;
+    border-bottom: 2px solid #f59e0b;
+    white-space: nowrap;
+    display: inline-block;
 }
 
-/* Danh sách dấu chấm */
-.message-content p {
+/* Dòng nguồn "Nguồn: ..." */
+.message-content .source-line {
+    font-style: italic;
+    color: #6b7280;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 2px solid #e5e7eb;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Động từ trách nhiệm */
+.message-content .responsibility-verb {
+    color: #dc2626;
+    font-weight: 600;
+    background: rgba(220, 38, 38, 0.05);
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+/* Câu giới thiệu danh sách */
+.message-content .list-intro {
+    font-weight: 600;
+    color: #374151;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Cải thiện line-height và spacing chung */
+.bot-message .message-content {
+    line-height: 2;
+    letter-spacing: 0.3px;
+}
+
+.bot-message .message-content p {
+    margin: 0;
+    line-height: 2;
+}
+
+/* Danh sách item (xuống dòng đơn giản) */
+.bot-message .message-content br {
+    display: block;
+    content: "";
+    margin: 4px 0;
+}
+
+/* Highlight cho các item trong danh sách */
+.message-content > p,
+.message-content > div {
     text-align: justify;
 }
-
-/* Highlight văn bản pháp lý */
-.bot-message .message-content strong {
-    background: linear-gradient(120deg, #e0f2fe 0%, #dbeafe 100%);
-    padding: 2px 6px;
-    border-radius: 3px;
 }
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
@@ -718,6 +771,7 @@ body {
         font-size: 22px;
     }
 }
+
 
 
 
