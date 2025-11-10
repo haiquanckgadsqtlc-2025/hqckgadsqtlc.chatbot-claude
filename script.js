@@ -511,6 +511,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 console.log('✅ Script.js loaded - Version Stable');
+
+
 // ===== SỰ KIỆN NÚT "BẮT ĐẦU CHAT NGAY" =====
 document.addEventListener('DOMContentLoaded', function() {
     const openChatBtn = document.getElementById('openChatBtn');
