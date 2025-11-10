@@ -285,12 +285,13 @@ class ChatbotAI {
         this.addMessage(message, 'user');
         
         // Nếu có viết tắt, hiển thị phiên bản đã mở rộng
+        /* Xóa hiện thị tôi đã hiểu 
         if (processed.hasAbbreviation && CONFIG.DEBUG) {
             this.addMessage(
                 `🔍 Tôi hiểu câu hỏi: "${processed.expanded}"`,
                 'bot'
             );
-        }
+        } */
 
         userInput.value = '';
 
