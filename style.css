@@ -328,6 +328,91 @@ body {
     color: #666;
 }
 
+/* ===== CONTACT SECTION (MỚI - Ở DƯỚI FEATURES), phần liên hệ ===== */
+.contact-section {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+    text-align: center;
+    color: white;
+    animation: fadeInUp 0.8s ease;
+}
+
+.contact-icon {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 25px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1e3c72;
+    font-size: 42px;
+    box-shadow: 0 5px 20px rgba(255,255,255,0.3);
+}
+
+.contact-title {
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.contact-description {
+    font-size: 16px;
+    margin-bottom: 35px;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-info-item {
+    background: rgba(255,255,255,0.15);
+    padding: 25px 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.contact-info-item:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.contact-info-item i {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #ffd700;
+    display: block;
+}
+
+.contact-info-item strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: white;
+    font-weight: bold;
+}
+
+.contact-info-item p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    margin: 0;
+}
+
 /* ===== FOOTER ===== */
 .footer {
     background: #1a1a2e;
@@ -894,3 +979,4 @@ body {
         font-size: 16px;
     }
 }
+
