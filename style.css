@@ -874,7 +874,7 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
-    .three-columns {
+    .two-columns {
         grid-template-columns: 1fr;
         gap: 25px;
     }
@@ -885,6 +885,11 @@ body {
 
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 }
 
@@ -936,6 +941,10 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+    }
+
     .autocomplete-dropdown {
         left: 10px;
         right: 10px;
@@ -964,6 +973,14 @@ body {
         padding: 30px 20px;
     }
 
+    .contact-section {
+        padding: 35px 25px;
+    }
+
+    .contact-title {
+        font-size: 22px;
+    }
+
     .chatbot-input {
         padding: 12px 15px;
     }
@@ -979,4 +996,3 @@ body {
         font-size: 16px;
     }
 }
-
