@@ -161,11 +161,11 @@ body {
 .column-highlight {
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     color: white;
-    transform: scale(1);
+   /* transform: scale(1); */
 }
 
 .column-highlight:hover {
-    transform: scale(10) translateY(-10px);
+    transform: scale(1) translateY(-10px);
 }
 
 .column-highlight h3,
@@ -996,4 +996,5 @@ body {
         font-size: 16px;
     }
 }
+
 
