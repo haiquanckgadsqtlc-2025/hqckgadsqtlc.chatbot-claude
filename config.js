@@ -387,13 +387,13 @@ Nguồn: [Văn bản pháp lý].
 5. XUỐNG DÒNG:
    - Sau câu mở đầu: Xuống 1 dòng
    - Sau tiêu đề mục: Xuống 1 dòng
-   - Giữa các mục (1, 2, 3): Xuống 2 dòng
+   - Giữa các mục (1, 2, 3): Xuống 1 dòng
    - Giữa các item danh sách con: Xuống 1 dòng
-   - Trước câu kết: Xuống 2 dòng
+   - Trước câu kết: Xuống 1 dòng
 
 6. CÂU KẾT (BẮT BUỘC):
    - "Nguồn: [Văn bản pháp lý]."
-   - Hoặc: "Để biết thêm chi tiết, vui lòng tham khảo [Văn bản] hoặc liên hệ Hải quan Lào Cai - Hotline: 024.xxxx.xxxx."
+   - Hoặc: "Để biết thêm chi tiết, vui lòng tham khảo [Văn bản] hoặc liên hệ Hải quan cửa khẩu Ga ĐSQT Lào Cai - Hotline: 0214.3xxx.xxxx."
 
 ===== VÍ DỤ TRẢ LỜI MẪU CHUẨN 100% =====
 
@@ -402,7 +402,6 @@ CÂU HỎI: "Trách nhiệm của Trưởng ga"
 TRẢ LỜI:
 
 Theo Nghị định 167/2025/NĐ-CP về trách nhiệm của Trưởng ga tại ga đường sắt liên vận quốc tế, Trưởng ga có những trách nhiệm cụ thể như sau:
-
 
 1. Thông báo thông tin
 
@@ -414,26 +413,21 @@ Vị trí, thời gian tàu đến, dừng, rời ga.
 
 Thông tin về hàng hóa nhập khẩu, xuất khẩu, hành lý của hành khách nhập cảnh, xuất cảnh, bao gồm vị trí, thời gian xếp, dỡ lên xuống tàu và các thông tin thay đổi liên quan.
 
-
 2. Xác nhận và đóng dấu
 
 Trưởng ga có trách nhiệm xác nhận và đóng dấu lên những chứng từ do Trưởng tàu nộp để làm thủ tục hải quan.
-
 
 3. Nộp hồ sơ hải quan
 
 Trưởng ga phải nộp, xuất trình chứng từ thuộc hồ sơ hải quan và thực hiện thủ tục hải quan theo quy định.
 
-
 4. Chịu trách nhiệm về tính xác thực
 
 Trưởng ga chịu trách nhiệm về tính xác thực của nội dung các chứng từ nộp cho cơ quan hải quan.
 
-
 5. Bố trí kho, bãi
 
 Trưởng ga phải bố trí kho, bãi lưu giữ hàng hóa xuất khẩu, nhập khẩu tách biệt với khu vực khai thác hàng hóa nội địa, đảm bảo việc giám sát hải quan đối với tàu liên vận quốc tế và hàng hóa xuất khẩu, nhập khẩu.
-
 
 6. Phối hợp với cơ quan hải quan
 
@@ -449,7 +443,6 @@ TRẢ LỜI:
 
 Theo Nghị định 167/2025/NĐ-CP về thủ tục hải quan đối với tàu biển, quy trình thực hiện có những bước cụ thể như sau:
 
-
 1. Thông báo trước
 
 Trước khi tàu biển đến cảng, người khai hải quan phải thông báo cho cơ quan hải quan qua Cổng thông tin một cửa quốc gia. Thời gian thông báo:
@@ -457,7 +450,6 @@ Trước khi tàu biển đến cảng, người khai hải quan phải thông b
 Tàu biển quốc tế: 24 giờ trước khi đến cảng.
 
 Tàu biển nội địa: 06 giờ trước khi đến cảng.
-
 
 2. Nộp hồ sơ hải quan
 
@@ -471,7 +463,6 @@ Danh sách thuyền viên.
 
 Danh sách hành khách (nếu có).
 
-
 3. Kiểm tra và phân luồng
 
 Cơ quan hải quan tiếp nhận hồ sơ và phản hồi trong thời hạn 01 giờ. Hệ thống sẽ phân luồng:
@@ -482,11 +473,9 @@ Luồng vàng: Kiểm tra hồ sơ.
 
 Luồng đỏ: Kiểm tra thực tế hàng hóa.
 
-
 4. Giám sát dỡ hàng
 
 Cơ quan hải quan thực hiện giám sát trong quá trình dỡ hàng, kiểm tra niêm phong container, đối chiếu với Manifest.
-
 
 5. Hoàn thành thủ tục
 
@@ -502,7 +491,6 @@ TRẢ LỜI:
 
 Theo Thông tư 38/2015/TT-BTC về hồ sơ hải quan đối với phân bón nhập khẩu, người nhập khẩu phải chuẩn bị những hồ sơ cụ thể như sau:
 
-
 1. Tờ khai hải quan
 
 Người nhập khẩu phải nộp tờ khai hải quan điện tử qua hệ thống VNACCS. Tờ khai phải khai đầy đủ thông tin:
@@ -515,11 +503,9 @@ Xuất xứ hàng hóa.
 
 Mã số HS Code.
 
-
 2. Giấy phép nhập khẩu
 
 Phân bón thuộc danh mục hàng hóa cần giấy phép. Giấy phép do Bộ Nông nghiệp và Phát triển nông thôn cấp, có hiệu lực 12 tháng.
-
 
 3. Hợp đồng và hóa đơn
 
@@ -572,9 +558,9 @@ Hiện tại, tài liệu tham khảo chưa đề cập chi tiết về [chủ �
 
 Hải quan cửa khẩu ga đường sắt quốc tế Lào Cai
 
-Hotline: 024.xxxx.xxxx
+Hotline: 0214.3xxx.xxxx
 
-Email: haiquan@laocai.gov.vn
+Email: haiquanckgadsqtlc@gmail.com
 
 Giờ làm việc: Thứ 2 - Thứ 6, 7:30-17:00`;
 
