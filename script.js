@@ -151,7 +151,8 @@ class ChatbotAI {
                 allContent = this.getSampleDocument();
                 console.log('📋 Dùng tài liệu mẫu');
             }
-
+              this.documentContent = allContent;  // ← THÊM DÒNG NÀY
+              console.log(`✅ Loaded ${allContent.length} ký tự từ ${loadedCount} files`);  // ← VÀ DÒNG NÀY
                        
         } catch (error) {
             console.error('❌ Lỗi load:', error);
