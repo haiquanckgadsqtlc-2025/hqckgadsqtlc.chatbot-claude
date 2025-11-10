@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HẢI QUAN CỬA KHẨU GA ĐƯỜNG SĂT QUÓC TẾ LÀO CAI</title>
+    <title>CHATBOT HẢI QUAN CỬA KHẨU GA ĐƯỜNG SẮT QUỐC TẾ LÀO CAI</title>
     <meta name="description" content="Hệ thống chatbot AI hỗ trợ tra cứu thủ tục hải quan 24/7">
     
     <!-- Font Awesome -->
@@ -18,7 +18,6 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo-section">
-                    <!-- Thay logo.png bằng logo thật hoặc xóa nếu không có -->
                     <img src="logo.png" alt="Logo Hải Quan" class="logo" onerror="this.style.display='none'">
                 </div>
                 <div class="title-section">
@@ -32,66 +31,88 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="container">
-            <!-- Welcome Section -->
-            <div class="welcome-box">
-                <h2>🤖 Hệ thống Chatbot AI hỗ trợ 24/7</h2>
-                <p>Trợ lý ảo thông minh được đào tạo bởi Google Gemini, sẵn sàng tư vấn về:</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check-circle"></i> Thủ tục hải quan xuất nhập khẩu hàng hóa</li>
-                    <li><i class="fas fa-check-circle"></i> Quy định về phân bón, phot pho, hóa chất</li>
-                    <li><i class="fas fa-check-circle"></i> Giám sát hàng hóa qua đường sắt quốc tế</li>
-                    <li><i class="fas fa-check-circle"></i> Tra cứu văn bản pháp lý hải quan</li>
-                </ul>
-                <div class="cta-box">
-                    <p><strong>👇 Click vào icon chatbot góc dưới bên phải để bắt đầu</strong></p>
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <h2 class="hero-title">CHATBOT HẢI QUAN CỬA KHẨU GA ĐƯỜNG SẮT QUỐC TẾ LÀO CAI</h2>
+                <p class="hero-description">Hải quan cửa khẩu Ga Đường sắt quốc tế Lào Cai mang đến cho doanh nghiệp giải pháp nhanh chóng thuận tiện.</p>
+            </div>
+
+            <!-- 3 Columns Section -->
+            <div class="three-columns">
+                <!-- Column 1 -->
+                <div class="column">
+                    <div class="column-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Trợ lý AI thông minh</h3>
+                    <p>Chatbot được đào tạo bởi Google Gemini AI, sẵn sàng hỗ trợ 24/7 về mọi vấn đề liên quan đến thủ tục hải quan.</p>
+                    <ul class="column-list">
+                        <li><i class="fas fa-check"></i> Thủ tục xuất nhập khẩu</li>
+                        <li><i class="fas fa-check"></i> Quy định hải quan</li>
+                        <li><i class="fas fa-check"></i> Tra cứu văn bản</li>
+                        <li><i class="fas fa-check"></i> Tư vấn hồ sơ</li>
+                    </ul>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="column column-highlight">
+                    <div class="column-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Giải pháp nhanh chóng</h3>
+                    <p>Tiết kiệm thời gian cho doanh nghiệp với hệ thống tư vấn tự động, chính xác và nhanh chóng.</p>
+                    <ul class="column-list">
+                        <li><i class="fas fa-check"></i> Trả lời tức thì</li>
+                        <li><i class="fas fa-check"></i> Hỗ trợ viết tắt</li>
+                        <li><i class="fas fa-check"></i> Gợi ý thông minh</li>
+                        <li><i class="fas fa-check"></i> Dữ liệu cập nhật</li>
+                    </ul>
+                    <div class="cta-button">
+                        <button id="openChatBtn" class="btn-primary">
+                            <i class="fas fa-comments"></i> Bắt đầu Chat ngay
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="column">
+                    <div class="column-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Hỗ trợ & Liên hệ</h3>
+                    <p>Đội ngũ hỗ trợ chuyên nghiệp sẵn sàng giải đáp mọi thắc mắc của bạn.</p>
+                    <ul class="column-list contact-list">
+                        <li><i class="fas fa-phone"></i> <strong>Hotline:</strong> 024.xxxx.xxxx</li>
+                        <li><i class="fas fa-envelope"></i> <strong>Email:</strong> haiquan@laocai.gov.vn</li>
+                        <li><i class="fas fa-clock"></i> <strong>Giờ làm việc:</strong> T2-T6, 7:30-17:00</li>
+                        <li><i class="fas fa-map-marker-alt"></i> <strong>Địa chỉ:</strong> Ga Đường sắt quốc tế Lào Cai</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Info Cards -->
-            <div class="info-section">
-                <div class="info-card">
-                    <div class="card-icon">
-                        <i class="fas fa-phone-alt"></i>
+            <!-- Features Section -->
+            <div class="features-section">
+                <h3 class="features-title">Tính năng nổi bật</h3>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-brain"></i>
+                        <h4>AI thông minh</h4>
+                        <p>Học từ tài liệu chính thức</p>
                     </div>
-                    <h3>Liên hệ</h3>
-                    <p><strong>Hotline:</strong> 024.xxxx.xxxx</p>
-                    <p><strong>Email:</strong> haiquan@laocai.gov.vn</p>
-                </div>
-
-                <div class="info-card">
-                    <div class="card-icon">
-                        <i class="fas fa-clock"></i>
+                    <div class="feature-item">
+                        <i class="fas fa-language"></i>
+                        <h4>Hiểu viết tắt</h4>
+                        <p>Hỗ trợ từ viết tắt phổ biến</p>
                     </div>
-                    <h3>Giờ làm việc</h3>
-                    <p><strong>T2 - T6:</strong> 7:30 - 17:00</p>
-                    <p><strong>T7 - CN:</strong> Nghỉ</p>
-                </div>
-
-                <div class="info-card">
-                    <div class="card-icon">
-                        <i class="fas fa-map-marker-alt"></i>
+                    <div class="feature-item">
+                        <i class="fas fa-search"></i>
+                        <h4>Gợi ý tự động</h4>
+                        <p>Autocomplete thông minh</p>
                     </div>
-                    <h3>Địa chỉ</h3>
-                    <p>Ga Đường sắt quốc tế</p>
-                    <p>TP. Lào Cai, Việt Nam</p>
-                </div>
-            </div>
-
-            <!-- FAQ Preview -->
-            <div class="faq-section">
-                <h2>❓ Câu hỏi thường gặp</h2>
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <strong>Q: Thời gian xử lý hồ sơ hải quan là bao lâu?</strong>
-                        <p>A: Trung bình 2-3 ngày làm việc đối với hồ sơ đầy đủ hợp lệ.</p>
-                    </div>
-                    <div class="faq-item">
-                        <strong>Q: Cần giấy tờ gì để nhập khẩu phân bón?</strong>
-                        <p>A: Giấy phép nhập khẩu, tờ khai hải quan, hợp đồng, hóa đơn...</p>
-                    </div>
-                    <div class="faq-item">
-                        <strong>Q: Chatbot có thể trả lời chính xác không?</strong>
-                        <p>A: Chatbot được đào tạo từ tài liệu chính thức, độ chính xác ~85%.</p>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Bảo mật cao</h4>
+                        <p>Dữ liệu được mã hóa</p>
                     </div>
                 </div>
             </div>
@@ -101,71 +122,64 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025. HẢI QUAN CỬA KHẨU GA ĐƯỜNG SẮT QUỐC TẾ LÀO CAI</p>
-          
+            <p>&copy; 2025 HẢI QUAN CỬA KHẨU GA ĐƯỜNG SẮT QUỐC TẾ LÀO CAI</p>
+            <small>Phát triển bởi Cục Hải quan Lào Cai</small>
         </div>
     </footer>
 
-  <!-- Chatbot Container -->
-<div class="chatbot-container" id="chatbotContainer">
-    <div class="chatbot-header">
-        <div class="header-content">
-            <i class="fas fa-robot"></i>
-            <div>
-                <span class="chatbot-title">Chatbot Hải Quan</span>
-                <span class="chatbot-status">● Online</span>
-            </div>
-        </div>
-        <button class="minimize-btn" id="minimizeBtn" title="Thu nhỏ">
-            <i class="fas fa-minus"></i>
-        </button>
-    </div>
-    
-    <div class="chatbot-messages" id="chatMessages">
-        <div class="message bot-message">
-            <div class="message-avatar">
+    <!-- Chatbot Container -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <div class="header-content">
                 <i class="fas fa-robot"></i>
+                <div>
+                    <span class="chatbot-title">Chatbot Hải Quan</span>
+                    <span class="chatbot-status">● Online</span>
+                </div>
             </div>
-            <div class="message-content">
-                <p>Xin chào! Tôi là chatbot của Hải quan cửa khẩu ga đường sắt quốc tế Lào Cai.</p>
-                <p><strong>Bạn cần hỗ trợ gì?</strong></p>
+            <button class="minimize-btn" id="minimizeBtn" title="Thu nhỏ">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p><strong>Xin chào! Tôi là trợ lý AI của Hải quan Lào Cai.</strong></p>
+                    <p>Tôi có thể hỗ trợ bạn về thủ tục hải quan, quy định xuất nhập khẩu.</p>
+                    <p><em>Bạn có thể dùng viết tắt: "tthq", "hh xnk", "dn cx"...</em></p>
+                </div>
             </div>
+        </div>
+
+        <div class="chatbot-input">
+            <input 
+                type="text" 
+                id="userInput" 
+                placeholder="Nhập câu hỏi của bạn..."
+                autocomplete="off"
+            >
+            <button id="sendBtn" title="Gửi">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+
+        <div class="chatbot-footer">
+            <small>Powered by Google Gemini AI</small>
         </div>
     </div>
 
-    <!-- PHẦN NÀY QUAN TRỌNG - ĐẢM BẢO CÓ ĐẦY ĐỦ -->
-    <div class="chatbot-input">
-        <input 
-            type="text" 
-            id="userInput" 
-            placeholder="Nhập câu hỏi của bạn..."
-            autocomplete="off"
-        >
-        <button id="sendBtn" title="Gửi">
-            <i class="fas fa-paper-plane"></i>
-        </button>
-    </div>
-
-  </div>
-
-<!-- Chatbot Toggle Button -->
-<button class="chatbot-toggle" id="chatbotToggle" title="Mở chatbot">
-    <i class="fas fa-comments"></i>
-    <span class="notification-badge">AI</span>
-</button>
+    <!-- Chatbot Toggle Button -->
+    <button class="chatbot-toggle" id="chatbotToggle" title="Mở chatbot">
+        <i class="fas fa-comments"></i>
+        <span class="notification-badge">AI</span>
+    </button>
 
     <!-- Scripts -->
-   <script src="config.js"></script>    <!-- ĐÚNG: config.js trước -->
-   <script src="script.js"></script>    <!-- ĐÚNG: script.js sau -->
-   <link rel="stylesheet" href="style.css">
+    <script src="config.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
