@@ -430,6 +430,7 @@ Nguồn: Nghị định 167/2025/NĐ-CP về thủ tục hải quan.`;
                 .replace(/(Nghị định|Thông tư|Luật|Quyết định|Công văn)\s+(\d+\/\d+\/[A-ZĐ\-]+)/gi, 
                          '<span class="legal-reference">$1 $2</span>')
                 .replace(/(Nguồn:.+?)(<div|<br|$)/gi, '<div class="source-line">$1</div>$2')
+                // ======== Xóa hightligh các chữ bôi đỏ trong trả lời chatbot
                 .replace(/\b(phải|có trách nhiệm|cần|chịu trách nhiệm)\b/gi, 
                          '<span class="responsibility-verb">$1</span>')
                 .replace(/([^.]+(?:bao gồm|gồm|như sau|cụ thể):)/gi, 
