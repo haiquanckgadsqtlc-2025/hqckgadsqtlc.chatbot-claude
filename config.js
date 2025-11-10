@@ -103,8 +103,8 @@ const PHRASE_ABBREVIATIONS = {
     'tx-tn': 'tạm xuất tái nhập',
     'txtn': 'tạm xuất tái nhập',
     'sx xk': 'sản xuất xuất khẩu',
-    'sxxk': 'sản xuất xuất khẩu'
-    'sx-xk': 'sản xuất xuất khẩu'
+    'sxxk': 'sản xuất xuất khẩu',
+    'sx-xk': 'sản xuất xuất khẩu', 
 };
 
 // ===== TỪ ĐIỂN TỪ ĐƠN (Ưu tiên thứ 2) =====
