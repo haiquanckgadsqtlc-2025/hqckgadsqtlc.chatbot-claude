@@ -749,13 +749,13 @@ body {
 
 .notification-badge {
     position: absolute;
-    top: -5px;
-    right: -5px;
+    top: -10px;
+    right: -10px;
     background: #ff4757;
     color: white;
     font-size: 14px;
     font-weight: bold;
-    padding: 7px 12px;
+    padding: 10px 15px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
@@ -998,6 +998,7 @@ body {
         font-size: 16px;
     }
 }
+
 
 
 
