@@ -753,7 +753,7 @@ body {
     right: -5px;
     background: #ff4757;
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     padding: 8px 15px;
     border-radius: 15px;
@@ -998,6 +998,7 @@ body {
         font-size: 16px;
     }
 }
+
 
 
 
