@@ -753,10 +753,10 @@ body {
     right: -5px;
     background: #ff4757;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 15px;
+    padding: 7px 12px;
+    border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
@@ -998,6 +998,7 @@ body {
         font-size: 16px;
     }
 }
+
 
 
 
