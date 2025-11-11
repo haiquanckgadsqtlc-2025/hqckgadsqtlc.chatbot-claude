@@ -750,13 +750,13 @@ body {
 .notification-badge {
     position: absolute;
     top: -10px;
-    right: -10px;
+    right: -6px;
     background: #ff4757;
     color: white;
     font-size: 14px;
     font-weight: bold;
-    padding: 5px 5px;
-    border-radius: 10px;
+    padding: 5px 10px;
+    border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     white-space: nowrap;  /* ← Không xuống dòng */
 }
@@ -999,6 +999,7 @@ body {
         font-size: 16px;
     }
 }
+
 
 
 
